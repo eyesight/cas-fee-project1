@@ -1,0 +1,17 @@
+{
+  "name": "CAS-FEE_Projekt1_Notizenapplikation",
+  "version": "1.0.0",
+  "description": "Application to handle notes",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eyesight/cas-fee-project1/index.js"
+  },
+  "author": "Claudia Friedrich",
+  "license": "MIT",
+  "homepage": "https://github.com/eyesight",
+  "dependencies": {
+    "finalhandler": "^0.3.6",
+    "serve-static": "^1.9.2"
+  }
+}
