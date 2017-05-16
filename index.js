@@ -4,7 +4,7 @@ var serveStatic = require("serve-static"),
 	http = require("http"),
 	finalhandler = require("finalhandler");
  
-var serve = serveStatic("static/"),
+var serve = serveStatic("src/"),
 	server = http.createServer(function(req, res) {
 		var done = finalhandler(req, res);
 
