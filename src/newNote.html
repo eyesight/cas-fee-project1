@@ -1,10 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Notes</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="styles/style.css" media="all" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<div class="wrapper">
+    <header class="head">
+        <div class="head_link-container">
+            <h1>add a {{ Note }}</h1>
+        </div>
+    </header>
+    <main>
+        <form>
+            <fieldset>
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title"><br>
+
+                <label for="description">Description </label>
+                <input type="text" id="description" name="description"><br>
+
+                <label for="star">Importance </label>
+                <input class="star star-5" id="star-5" type="radio" name="star"/>★
+                <label class="star star-5" for="star-5"></label>
+                <input class="star star-4" id="star-4" type="radio" name="star"/>★
+                <label class="star star-4" for="star-4"></label>
+                <input class="star star-3" id="star-3" type="radio" name="star"/>★
+                <label class="star star-3" for="star-3"></label>
+                <input class="star star-2" id="star-2" type="radio" name="star"/>★
+                <label class="star star-2" for="star-2"></label>
+                <input class="star star-1" id="star-1" type="radio" name="star"/>★
+                <label class="star star-1" for="star-1"></label><br>
+                <label for="fdate">Finishing Date</label>
+                <input type="date" id="fdate" name="bday">
+                <br>
+                <input type="submit" value="Submit">
+            </fieldset>
+            <button><a href="index.html">cancel</a></button>
+        </form>
+    </main>
+</div>
 
 </body>
 </html>
