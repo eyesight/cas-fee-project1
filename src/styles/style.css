@@ -7,15 +7,6 @@
 
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block;}
 audio,canvas,video{display:inline-block;}
-/*fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em;}
-button,input{line-height:normal;}
-input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0;}
-input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}
-input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none;}
-textarea{overflow:auto;vertical-align:top;}
-table{border-collapse:collapse;border-spacing:0;}
-body,figure{margin:0;}
-legend,button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}*/
 
 
 /* ----------------------------------------- global ---------------------------------------*/
@@ -27,13 +18,10 @@ body, select{
     font-size:0.9em;
 }
 
-.wrapper{
-    max-width: 1480px;
-    margin: 40px auto;
-    padding:0 20px;
-}
-
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
     margin: 0;
 
     font-family: inherit;
@@ -53,7 +41,8 @@ select{
     color: #fff;
 }
 
-button[disabled],input[disabled] {
+button[disabled],
+input[disabled] {
     cursor:default;
 }
 
@@ -67,7 +56,7 @@ a{
 }
 
 h1{
-    font-size:1.5em;
+    font-size: 4em;
 }
 
 h2{
@@ -76,27 +65,36 @@ h2{
     padding-bottom:20px;
 }
 
+.wrapper{
+    max-width: 1480px;
+    margin: 40px auto;
+    padding:0 20px;
+}
+
+.btn{
+    cursor: pointer;
+    font-weight:600;
+}
+
 /**
  * Header
  */
 
-header{
+
+.head{
     display: flex;
     justify-content:center;
     align-items:baseline;
+    margin-bottom:40px;
 }
 
-.head_link-container{
+.head__title-container{
     justify-content:center;
 
-    width:70%;
-    padding-left:20%;
-
-    font-size:3em;
     text-align:center;
 }
 
-.head_select-container{
+.head__select-container{
     display:flex;
     align-items:baseline;
 
@@ -106,61 +104,78 @@ header{
     text-align:right;
 }
 
-.head_style-item{
+.head__style-item{
     flex: 1 1 50%;
     padding-right:20px;
 }
 
-.head_link-container span.head_add{
+.head__link-container{
+    width:70%;
+    padding-left:20%;
+}
+
+.head__link-container .head__add{
     display:none;
 }
 
-.head_link-container a:hover span{
+.head__link-container a:hover span,
+.head__link-container a:focus span,
+.head__link-container a:active span{
     display:inline-block;
 }
 
-.head_link-container a:hover span.head_plus{
+.head__link-container a:hover .head__plus,
+.head__link-container a:focus .head__plus,
+.head__link-container a:active .head__plus{
     display:none;
 }
-
 
 
 /**
  * Navigation
  */
+
+
 .main-nav{
     width: 68%;
-    margin:40px auto 0;
+    margin:0 auto;
 }
 
-.main-nav_wrapper{
+.main-nav__wrapper{
     display:flex;
     color:#000;
     font-weight:600;
 }
 
-.main-nav_list{
+.main-nav__list{
     flex: 2 1 25%;
     display: flex;
     background-color: #fff;
     border-radius: 10px;
 }
 
-.main-nav_element{
+.main-nav__element{
     flex:1 1 50%;
+
+    cursor: pointer;
 }
 
-.main-nav_element span{
+.main-nav__element span{
+    width: 100%;
     padding: 20px;
     display:inline-block;
 }
 
-.main-nav_finish:hover, .main-nav_finish:active, .main-nav_element span:hover, .main-nav_element span:active{
+.main-nav__finish:hover,
+.main-nav__finish:focus,
+.main-nav__finish.active,
+.main-nav__element span:hover,
+.main-nav__element span:focus,
+.main-nav__element.active{
     color:#0d5e75;
-    cursor: pointer;
 }
 
-.main-nav_finish{
+.main-nav__finish{
     flex: 1;
 
     margin-left:20px;
@@ -171,10 +186,13 @@ header{
     font-weight:600;
 }
 
+
 /**
  * main
  */
-main{
+
+
+.content-wrap{
     margin: 20px 0;
 }
 
@@ -183,22 +201,24 @@ main{
 /**
  * notes
  */
+
+
 .note{
     margin-bottom: 20px;
 }
 
-.note_container{
+.note__container{
     display:flex;
     justify-content: space-around;
 
     height: 200px;
 }
 
-.note_container div{
+.note__element{
     flex: 1;
 }
 
-.note_container button{
+.note__container .btn{
     height: 100%;
     width: 100%;
 
@@ -211,45 +231,44 @@ main{
     color:#ffffff;
 }
 
-.note_container button span{
+.note__btn--smalltext{
     display:block;
 
-    font-size: 0.7 em;
-    font-weight:300;
+    font-size:0.8em;
+    font-weight: 300;
 }
 
-.note_finish-wrapper button{
+.note__finish-wrapper .btn{
     padding-bottom: 12%;
 }
 
-.note_container button:hover span,
-.note_container button.active span{
+.note__container .btn:hover span,
+.note__container .btn:focus span,
+.note__container .btn.active span{
     display: none;
     padding-bottom:0;
 }
-
-.note_container button:hover .note_quetionmark{
+.note__quetionmark{
     display: inline-block;
 }
 
-.note_container .note_quetionmark,
-.note_container button.active .note_quetionmark{
+.btn.active .note__quetionmark{
     display:none;
-
-    font-weight:600;
 }
 
-.note_finish-wrapper button:hover,
-.note_finish-wrapper button.active,
-.notes_edit-wrapper button:hover,
-.notes_edit-wrapper button.active{
+.note__finish-wrapper .btn:hover,
+.note__finish-wrapper .btn:focus,
+.note__finish-wrapper .btn.active,
+.note__edit-wrapper .btn:hover,
+.note__edit-wrapper .btn:focus,
+.note__edit-wrapper .btn.active{
     padding-bottom: 0;
 
     background-color:#fff;
     color: #0d5e75;
 }
 
-.note_container .note_main-wrapper{
+.note__text-wrapper{
     flex: 3 1 25%;
     display:flex;
     justify-content: space-around;
@@ -261,23 +280,25 @@ main{
     padding:10px;
 }
 
-.note_main-wrapper div{
+.note__text-element{
     flex:1;
 }
 
-.note_main-wrapper .note_text{
+.note__text{
     flex:2;
     overflow:scroll;
 }
 
-.note_rating{
+.note__rating{
     text-align: center;
 }
 
 /**
  * footer
  */
-footer{
+
+
+.footer{
     position:relative;
     width: 68%;
     margin: 20px auto;
@@ -285,6 +306,261 @@ footer{
     font-size:0.8em;
 
 }
+/* ----------------------------------------- Form ---------------------------------------*/
+.form-wrap{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-around;
+    height:100vh;
+}
+.form {
+    width:68%;
+}
 
+.fieldset{
+    border:none;
+}
+
+input,
+textarea{
+    width: 100%;
+    margin:10px 0 20px;
+    padding:10px;
+
+    border:none;
+    background-color:#fff;
+    border-radius: 10px;
+}
+
+textarea{
+    min-height:150px;
+}
+
+.form__btn{
+    display:flex;
+}
+
+.form__btn .btn,
+.form__btn a{
+    padding: 10px;
+}
+
+.form__btn .btn{
+    flex:1;
+    justify-content:space-around;
+    padding: 10px;
+
+    background-color:#0d5e75;
+    border:1px solid #fff;
+    border-radius: 10px;
+
+    color:#fff;
+}
+
+.form__btn .form__cancel{
+    padding: 0px;
+}
+
+.form__btn .btn:first-child{
+    margin-right:40px;
+}
+.btn--link{
+    width: 100%;
+    height: 100%;
+    display:block;
+}
+
+.form__btn .btn:hover,
+.form__btn .btn:active,
+.form__btn .btn:focus,
+.form__btn .form__cancel .btn--link:hover,
+.form__btn .form__cancel .btn--link:active,
+.form__btn .form__cancel .btn--link:focus{
+    background-color:#fff;
+    color:#0d5e75;
+}
+
+/**
+ * rating
+ */
+
+.hide {
+    display: none;
+}
+
+
+.form__rating {
+    text-align: left;
+    font-size:1.5em;
+    margin-bottom:20px;
+
+    unicode-bidi: bidi-override;
+    direction: rtl;
+
+}
+
+.form__rating > label {
+    display: inline;
+    position: relative;
+    padding-right:10px;
+
+    cursor: pointer;
+    color: #000;
+
+    text-align: left;
+
+}
+
+.form__rating > label:hover:before,
+.form__rating > label:hover ~ label:before,
+.form__rating > input.star:checked ~ label:before,
+.form__rating > input.star:checked ~ label:before {
+    content: "\2605";
+    position: absolute;
+    left: 0;
+
+    color: #FFD700;
+}
 
 /* ----------------------------------------- mediaQueries ---------------------------------------*/
+@media (max-width: 1479px) {
+    .main-nav__element span{
+        padding: 10px;
+    }
+
+    .note__container .btn{
+        height: 140px;
+        width: 140px;
+
+        font-size: 1em;
+    }
+}
+
+
+@media (max-width: 1023px){
+    .note__container .btn{
+        height: 100px;
+        width: 100px;
+    }
+    .head{
+        align-items:center;
+    }
+
+    .head__select-container{
+        flex-direction: column;
+        align-items:flex-end;
+    }
+
+    .head__style-item{
+        padding:0 0 10px 0;
+    }
+}
+
+@media (max-width: 768px){
+    h1{
+        font-size:3em;
+    }
+    .main-nav{
+        width: 100%;
+    }
+
+    .note__container{
+        flex-wrap:wrap;
+
+        height:auto;
+    }
+    .note__element{
+        flex: 1 1 50%;
+        order:1;
+    }
+
+    .note__text-wrapper{
+        flex: 3 1 100%;
+        order:-1;
+        min-height:200px;
+        margin:20px 0 10px 0;
+    }
+    .note__text-wrapper:nth-child(2){
+        margin-top:0;
+    }
+    .note__finish-wrapper .btn{
+        padding-bottom:15px;
+    }
+    .note__edit-wrapper{
+        text-align: right;
+    }
+    .footer{
+        width:100%;
+    }
+}
+
+@media (max-width: 550px){
+    h1{
+        font-size:2em;
+    }
+
+    .head{
+        flex-direction: column;
+
+    }
+    .head__link-container{
+        padding:20px 0;
+    }
+    .head__select-container{
+        width: 100%;
+        flex-direction: row;
+    }
+    .head__style-item{
+        margin:20px 10px 10px 0;
+    }
+}
+
+/* ------------------------*/ /* ---------->>> other Style <<<-----------*/ /* ------------------------*/
+body.black-white, .black-white select{
+    font-family: 'Droid Serif', serif;
+    background-color:#000;
+}
+
+.black-white .main-nav__finish:hover,
+.black-white .main-nav__finish:focus,
+.black-white .main-nav__finish.active,
+.black-white .main-nav__element :hover,
+.black-white .main-nav__element :focus,
+.black-white .main-nav__element.active{
+    background-color:#444;
+    color:#fff;
+}
+
+.black-white .note__container .btn{
+    background-color: #000;
+}
+
+.black-white .note__finish-wrapper .btn:hover,
+.black-white .note__finish-wrapper .btn:focus,
+.black-white .note__finish-wrapper .btn.active,
+.black-white .note__edit-wrapper .btn:hover,
+.black-white .note__edit-wrapper .btn:focus,
+.black-white .note__edit-wrapper .btn.active{
+    background-color:#fff;
+    color: #000;
+}
+
+.black-white .form__btn .btn{
+    background-color:#000;
+    color: #fff;
+}
+
+.black-white .form__btn .btn:hover,
+.black-white .form__btn .btn:active,
+.black-white .form__btn .btn:focus,
+.black-white .form__btn .form__cancel .btn--link:hover,
+.black-white .form__btn .form__cancel .btn--link:active,
+.black-white .form__btn .form__cancel .btn--link:focus {
+    border-radius: 10px;
+    color: #000;
+}
+.black-white .form__submit.btn:hover,
+.black-white .form__submit.btn:active,
+.black-white .form__submit.btn:focus{
+    background-color: #ffffff;
+}

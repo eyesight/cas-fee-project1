@@ -7,80 +7,81 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700" rel="stylesheet">
 	<link href="styles/style.css" media="all" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div class="wrapper">
 <header class="head">
-	<div class="head_link-container">
-		<h1><a href="newNote.html"><span class="head_add">add a</span> <span class="head_plus">+</span> {{ Note }}</a></h1>
+	<div class="head__link-container head__title-container">
+		<h1 class="head__title"><a href="newNote.html"><span class="head__add">add a</span> <span class="head__plus">+</span> {{ Note }}</a></h1>
 	</div>
-	<div class="head_select-container">
-		<p class="head_style-item">Change the style to</p>
-		<select class="head_style-item" name="stylesheets">
+	<div class="head__select-container">
+		<p class="head__style-item">Change the style to</p>
+		<select class="head__style-item" name="stylesheets">
 			<option value="style1" selected>colorful</option>
 			<option value="style2">black and white</option>
 		</select>
 	</div>
 </header>
 	<nav class="main-nav">
-		<p class="main-nav_pre">sort by</p>
-		<div class="main-nav_wrapper">
-			<ul class="main-nav_list">
-				<li class="main-nav_element"><span>finish date</span></li>
-				<li class="main-nav_element"><span>created date</span></li>
-				<li class="main-nav_element"><span>importance</span></li>
+		<p class="main-nav__pre">sort by</p>
+		<div class="main-nav__wrapper">
+			<ul class="main-nav__list">
+				<li class="main-nav__element active"><span>finish date</span></li>
+				<li class="main-nav__element"><span>created date</span></li>
+				<li class="main-nav__element"><span>importance</span></li>
 			</ul>
-			<button class="main-nav_finish">show finished</button>
+			<button class="main-nav__element main-nav__finish">show finished</button>
 		</div>
 	</nav>
-	<main>
+	<main class="content-wrap">
 		<article class="note">
-			<div class="note_container">
-				<div class="note_finish-wrapper">
-					<button><span>not</span>finished<span class="note_quetionmark">?</span></button>
+			<div class="note__container">
+				<div class="note__element note__finish-wrapper">
+					<button class="btn"><span class="note__btn--smalltext">not</span>finished<span class="note__quetionmark">?</span></button>
 				</div>
-				<div class="note_main-wrapper">
-					<div class="notes_date">
+				<div class="note__element note__text-wrapper">
+					<div class="note__text-element note__date">
 						<p>nächsten Mittwoch</p>
 					</div>
-					<div class="note_text">
+					<div class="note__text-element note__text">
 						<h2>CAS-FEE Selbststudium / Projekt Aufgabe erledigen</h2>
 						<p>Otaque magnis ipsuntiate vero ipidebis rem voluptatur, cusam aut velenisimo temquis imusdae. Soluptatque nonsequo tesequi blam ipsundebit labore, cuptia nonsequam id magnima volores ad magnis</p>
 					</div>
-					<div class="note_rating">
+					<div class="note__text-element note__rating">
 						<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 					</div>
 				</div>
-				<div class="notes_edit-wrapper">
-					<button>edit</button>
+				<div class="note__element note__edit-wrapper">
+					<button class="btn">edit</button>
 				</div>
 			</div>
 		</article>
 		<article class="note">
-			<div class="note_container">
-				<div class="note_finish-wrapper">
-					<button class="active"><span>not</span>finished<span class="note_quetionmark">?</span></button>
+			<div class="note__container">
+				<div class="note__element note__finish-wrapper">
+					<button class="btn active"><span class="note--blockelement">not</span>finished<span class="note__quetionmark">?</span></button>
 				</div>
-				<div class="note_main-wrapper">
-					<div class="notes_date">
+				<div class="note__element note__text-wrapper">
+					<div class="note__text-element note__date">
 						<p>nächsten Mittwoch</p>
 					</div>
-					<div class="note_text">
+					<div class="note__text-element note__text">
 						<h2>CAS-FEE Selbststudium / Projekt Aufgabe erledigen</h2>
 						<p>Otaque magnis ipsuntiate vero ipidebis rem voluptatur, cusam aut velenisimo temquis imusdae. Soluptatque nonsequo tesequi blam ipsundebit labore, cuptia nonsequam id magnima volores ad magnis</p>
 					</div>
-					<div class="note_rating">
+					<div class="note__text-element note__rating">
 						<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 					</div>
 				</div>
-				<div class="notes_edit-wrapper">
-					<button>edit</button>
+				<div class="note__element note__edit-wrapper">
+					<button class="btn" >edit</button>
 				</div>
 			</div>
 		</article>
 	</main>
-<footer><p>Claudia Friedrich 2017</p></footer>
+<footer class="footer"><p>Claudia Friedrich 2017</p></footer>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="js/libs/moment.js"></script>
