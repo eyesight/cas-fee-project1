@@ -12,6 +12,7 @@
   "homepage": "https://github.com/eyesight",
   "dependencies": {
     "finalhandler": "^0.3.6",
+    "gulp": "^3.9.1",
     "handlebars": "^4.0.8",
     "moment": "^2.18.1",
     "serve-static": "^1.9.2"

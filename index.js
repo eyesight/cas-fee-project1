@@ -12,3 +12,4 @@ var serve = serveStatic("src/"),
 	});
  
 server.listen(3000);
+
