@@ -1,7 +1,7 @@
 "use strict";
 //Some Test-Notes (to prepar for implement the JSON-Objects)
 var testnotes ={
-    notestotest:[
+    noteslist:[
     {
     "name": "Abwaschen",
     "description": "Geschirr abwaschen, etc.",
