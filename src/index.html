@@ -14,7 +14,7 @@
 <body>
 <div class="wrapper">
 <header class="head">
-	<div class="head__link-container head__title-container">
+	<div class="head__title-container">
 		<h1 class="head__title"><a href="newNote.html"><span class="head__add">add a</span> <span class="head__plus">+</span> {{ Note }}</a></h1>
 	</div>
 	<div class="head__select-container">
@@ -38,7 +38,7 @@
 	</nav>
 	<div id="notesNumber"></div>
 	<div id="notesName"></div>
-	<main id="notesContainer" class="content-wrap">
+	<div id="notesContainer" class="content-wrap">
 		<article class="note">
 			<div class="note__container">
 				<div class="note__element note__finish-wrapper">
@@ -58,7 +58,7 @@
 				</div>
 			</div>
 		</article>
-	</main>
+	</div>
 <footer class="footer"><p class="noteTitle">Claudia Friedrich 2017</p></footer>
 </div>
 <script id="noteTemplate" type="text/x-handlebars-template">
@@ -73,7 +73,7 @@
 					<p>nächsten Mittwoch</p>
 				</div>
 				<div class="note__text-element note__text">
-					<h2 >{{name}}</h2>
+					<h2 >{{title}}</h2>
 					<p>{{description}}</p>
 				</div>
 				<div class="note__text-element note__rating">
@@ -93,7 +93,7 @@
 <script src="js/libs/moment.js"></script>
 <script src="js/testnotes.js"></script>
 <script src="js/app.js"></script>
-<script src="js/localStorage.js"></script>
+<script src="js/listNotes.js"></script>
 <script src="js/view.js"></script>
 </body>
 </html>

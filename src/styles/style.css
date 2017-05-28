@@ -1,3 +1,15 @@
+/* ----------------------------------------- reset/normalize ---------------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block;}
+audio,canvas,video{display:inline-block;}
+
+
+
 /* ----------------------------------------- global ---------------------------------------*/
 
 body, select{
@@ -47,6 +59,7 @@ a{
 
 h1{
     font-size: 4em;
+    margin:0;
 }
 
 h2{
@@ -84,11 +97,29 @@ h2{
 }
 
 .head__title-container{
+    width:70%;
     -webkit-box-pack:center;
        -ms-flex-pack:center;
      justify-content:center;
+    padding-left:20%;
 
     text-align:center;
+}
+
+.head__title-container .head__add{
+    display:none;
+}
+
+.head__title-container a:hover span,
+.head__title-container a:focus span,
+.head__title-container a:active span{
+    display:inline-block;
+}
+
+.head__title-container a:hover .head__plus,
+.head__title-container a:focus .head__plus,
+.head__title-container a:active .head__plus{
+    display:none;
 }
 
 .head__select-container{
@@ -113,25 +144,8 @@ h2{
     padding-right:20px;
 }
 
-.head__link-container{
-    width:70%;
-    padding-left:20%;
-}
-
-.head__link-container .head__add{
-    display:none;
-}
-
-.head__link-container a:hover span,
-.head__link-container a:focus span,
-.head__link-container a:active span{
-    display:inline-block;
-}
-
-.head__link-container a:hover .head__plus,
-.head__link-container a:focus .head__plus,
-.head__link-container a:active .head__plus{
-    display:none;
+.head--no-padding{
+    padding:0;
 }
 
 /**************************
@@ -228,6 +242,7 @@ h2{
 }
 
 .note__element{
+    height: 100%;
     -webkit-box-flex: 1;
         -ms-flex: 1;
             flex: 1;
@@ -312,7 +327,7 @@ h2{
     -webkit-box-flex:2;
         -ms-flex:2;
             flex:2;
-    overflow:scroll;
+    overflow-y:scroll;
 }
 
 .note__rating{
@@ -397,7 +412,7 @@ textarea{
     color:#fff;
 }
 
-.form__btn .form__cancel{
+.form__btn .form__btn{
     padding: 0px;
 }
 
@@ -413,9 +428,9 @@ textarea{
 .form__btn .btn:hover,
 .form__btn .btn:active,
 .form__btn .btn:focus,
-.form__btn .form__cancel .btn--link:hover,
-.form__btn .form__cancel .btn--link:active,
-.form__btn .form__cancel .btn--link:focus{
+.form__btn .form__btn .btn--link:hover,
+.form__btn .form__btn .btn--link:active,
+.form__btn .form__btn .btn--link:focus{
     background-color:#fff;
     color:#0d5e75;
 }
@@ -461,6 +476,11 @@ textarea{
 
     color: #FFD700;
 }
+
+input:invalid {
+    border: 2px dashed red;
+}
+
 
 /* ----------------------------------------- mediaQueries ---------------------------------------*/
 @media (max-width: 1479px) {

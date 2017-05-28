@@ -29,7 +29,7 @@ Handlebars.registerHelper('ratingCounter', function(){
 });
 
 Handlebars.registerHelper('buttonActive', function(){
-    var buttonstate = Handlebars.escapeExpression(this.closed);
+    var buttonstate = Handlebars.escapeExpression(this.finished);
     var button = "";
     if(buttonstate === "1" ){
         return button = "active";
@@ -56,17 +56,7 @@ function styleChanger(){
 
 }
 
-function notesInit(){
-    console.log('sadfsd');
-    var notes = JSON.parse(sessionStorage.getItem("notes"));
-    notes.push(document.getElementById("title").value);
-    sessionStorage.setItem("notes", JSON.stringify(notes));
-    window.location.replace("index.html");
-}
-
 //Run Function Handelbars
 window.addEventListener('DOMContentLoaded', templateToHtml);
 window.addEventListener('change', styleChanger);
-document.querySelector("#submitBtn").addEventListener('click', notesInit);
-console.log(document.querySelector("#submitBtn"));
 
