@@ -4,24 +4,23 @@
  */
 //Notes initialiser, add new notes
 //To-do: set testnotes from testnotes.js for empty storage
-function getNoteData(){
-    var notes = sessionStorage.getItem("notes");
-    //if no notes exist, set new Object notes
-    if(!notes){
-        console.log('no notes set');
-        notes = sessionStorage.setItem("notes", JSON.stringify([]));
-    }
-    return JSON.parse(notes);
-}
-
 function formatFinishDate(finishDate){
     finishDate = document.getElementById("fdate").value;
     finishDate = moment(finishDate).format('LL');
     return finishDate;
 }
 
+function countID(){
+    var notesID = notesData.map(function(a) {
+        return a.id;
+    });
+}
+
 function addNewNote(title, description, rating, creatDate, finishDate, finished){
     var notes = getNoteData();
+    var notesID = notes.map(function(a) {
+        return a.id;
+    });
     title = document.getElementById("title").value;
     description = document.getElementById("description").value;
     rating = document.querySelector('input[name="rating"]:checked').value;
@@ -29,7 +28,6 @@ function addNewNote(title, description, rating, creatDate, finishDate, finished)
     finishDate = formatFinishDate();
     finished = 0;
     var id = 0;
-
 
     var newNote = {
         'id': id,
@@ -42,10 +40,10 @@ function addNewNote(title, description, rating, creatDate, finishDate, finished)
     };
 
     notes.push(newNote);
-    sessionStorage.setItem("notes", JSON.stringify(notes));
+    localStorage.setItem("notes", JSON.stringify(notes));
 };
 
-document.querySelector("#submitBtn").addEventListener('click', addNewNote);
+
 
 
 

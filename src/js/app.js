@@ -39,24 +39,23 @@ Handlebars.registerHelper('buttonActive', function(){
 
 //Handebar-Render-Function
 function templateToHtml(){
+    var notesData = getNoteData();
     var temp = document.querySelector('#noteTemplate').innerHTML;
 
     var compiledTemp = Handlebars.compile(temp);
-    var generatedNote = compiledTemp(testnotes);
+    var generatedNote = compiledTemp(notesData);
 
     var noteswrap = document.querySelector('#notesContainer');
     noteswrap.innerHTML = generatedNote;
+
 }
 
 //Stylechanger
 function styleChanger(){
-    var body = document.querySelector('body');
-    var style = document.querySelector('#stylesAll').value;
-    (style === 'style2') ? body.classList.add("black-white") : body.classList.remove("black-white");
-
+    var actualStyle = getStyleData();
+    actualStyle = document.querySelector('#stylesAll').value;
+    localStorage.setItem('styleClassName', actualStyle);
+    document.querySelector('body').className = actualStyle;
 }
 
-//Run Function Handelbars
-window.addEventListener('DOMContentLoaded', templateToHtml);
-window.addEventListener('change', styleChanger);
 

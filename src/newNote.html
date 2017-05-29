@@ -20,15 +20,14 @@
     </header>
     <div class="form-wrap content-wrap">
         <form class="form" method="post">
-            <fieldset class="fieldset">
                 <label for="title">Title</label>
-                <input type="text" id="title" name="title" required="required"><br>
+                <input type="text" id="title" name="title" required autofocus/><br>
 
                 <label for="description">Description </label>
-                <textarea type="text" id="description" name="description" required="required"></textarea>
+                <textarea type="text" id="description" name="description" required autofocus></textarea>
 
                 <label>Importance </label>
-                    <div id="rating" name="rating" class="form__rating" required="required">
+                    <div id="rating" name="rating" class="form__rating" required autofocus>
                         <input class="star star-5 hide" id="star-5" type="radio" name="rating" value="5"/>
                         <label for="star-5">☆</label>
                         <input class="star star-4 hide" id="star-4" type="radio" name="rating" value="4"/>
@@ -41,13 +40,11 @@
                         <label for="star-1">☆</label>
                     </div>
                 <label for="fdate">Finishing Date</label>
-                <input type="date" id="fdate" name="bday" required="required">
+                <input type="date" id="fdate" name="bday" required autofocus/>
                 <div class="form__btn">
                     <button id="submitBtn" class="btn form__btn" type="submit" value="Submit"><a class="btn--link" href="index.html">submit</a></button>
                     <button id="cancelBtn" class="btn form__btn"><a class="btn--link" href="index.html">cancel</a></button>
                 </div>
-            </fieldset>
-
         </form>
     </div>
 </div>
@@ -56,6 +53,8 @@
 
 <script src="js/libs/moment.js"></script>
 <script src="js/testnotes.js"></script>
+<script src="js/storage.js"></script>
 <script src="js/addNote.js"></script>
+<script src="js/controllerNewNote.js"></script>
 </body>
 </html>

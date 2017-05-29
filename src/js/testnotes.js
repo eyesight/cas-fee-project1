@@ -1,7 +1,6 @@
 "use strict";
 //Some Test-Notes (to prepar for implement the JSON-Objects)
-var testnotes = {
-    noteslist: [
+var defaultnotes = [
         {
             "id": 0,
             "title": "Abwaschen",
@@ -12,7 +11,7 @@ var testnotes = {
             "finished": 0
         },
         {
-            "id": 0,
+            "id": 1,
             "title": "Aufräumen",
             "description": "Die gesamte Wohnung und so",
             "rating": 5,
@@ -21,7 +20,7 @@ var testnotes = {
             "finished": 1
         },
         {
-            "id": 0,
+            "id": 2,
             "title": "Serie fertig schauen",
             "description": "Nanananananana ksdjf sjfa fjkal fjalkfjaslfja flajlf ajdflkasdg kvmyckjfk ads",
             "rating": 4,
@@ -30,7 +29,7 @@ var testnotes = {
             "finished": 1
         },
         {
-            "id": 0,
+            "id": 3,
             "title": "Serie fertig schauen",
             "description": "Nanananananana ksdjf sjfa fjkal fjalkfjaslfja flajlf ajdflkasdg kvmyckjfk ads",
             "rating": 5,
@@ -38,5 +37,4 @@ var testnotes = {
             "finishDate": "irgendwann",
             "finished": 0
         }
-    ]
-};
+    ];
