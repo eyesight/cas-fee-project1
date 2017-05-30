@@ -10,27 +10,27 @@ function formatFinishDate(finishDate){
     return finishDate;
 }
 
-function countID(){
-    var notesID = notesData.map(function(a) {
-        return a.id;
-    });
-}
-
 function addNewNote(title, description, rating, creatDate, finishDate, finished){
     var notes = getNoteData();
-    var notesID = notes.map(function(a) {
-        return a.id;
-    });
+    var idOfNotes = notes.map(function(a){return a.id++;});
+    var notesMaxID=1;
+    if(!notes){
+        notesMaxID=1;
+    }else{
+        notesMaxID= Math.max.apply(Math, notes);
+    }
+
+
     title = document.getElementById("title").value;
     description = document.getElementById("description").value;
     rating = document.querySelector('input[name="rating"]:checked').value;
     creatDate = moment().format('LL');
     finishDate = formatFinishDate();
     finished = 0;
-    var id = 0;
+
 
     var newNote = {
-        'id': id,
+        'id': notesMaxID,
         'title': title,
         'description': description,
         'rating' : rating,
