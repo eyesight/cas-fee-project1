@@ -6,8 +6,8 @@ var defaultnotes = [
             "title": "Abwaschen",
             "description": "Geschirr abwaschen, etc.",
             "rating": 2,
-            "creatDate": "25. Mai 2017",
-            "finishDate": "nächsten Mittwoch",
+            "creatDate": "2017-05-24",
+            "finishDate": "2017-05-25",
             "finished": 0
         },
         {
@@ -15,8 +15,8 @@ var defaultnotes = [
             "title": "Aufräumen",
             "description": "Die gesamte Wohnung und so",
             "rating": 5,
-            "creatDate": "24. Mai 2017",
-            "finishDate": "nächsten Donnerstag",
+            "creatDate": "2017-05-24",
+            "finishDate": "2017-05-26",
             "finished": 1
         },
         {
@@ -24,8 +24,8 @@ var defaultnotes = [
             "title": "Serie fertig schauen",
             "description": "Nanananananana ksdjf sjfa fjkal fjalkfjaslfja flajlf ajdflkasdg kvmyckjfk ads",
             "rating": 4,
-            "creatDate": "24. Mai 2017",
-            "finishDate": "irgendwann",
+            "creatDate": "2017-05-24",
+            "finishDate": "2017-05-27",
             "finished": 1
         },
         {
@@ -33,8 +33,8 @@ var defaultnotes = [
             "title": "Serie fertig schauen",
             "description": "Nanananananana ksdjf sjfa fjkal fjalkfjaslfja flajlf ajdflkasdg kvmyckjfk ads",
             "rating": 5,
-            "creatDate": "24. Mai 2017",
-            "finishDate": "irgendwann",
+            "creatDate": "2017-05-24",
+            "finishDate": "2017-05-28",
             "finished": 0
         }
     ];

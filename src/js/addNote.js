@@ -12,25 +12,24 @@ function formatFinishDate(finishDate){
 
 function addNewNote(title, description, rating, creatDate, finishDate, finished){
     var notes = getNoteData();
-    var idOfNotes = notes.map(function(a){return a.id++;});
-    var notesMaxID=1;
-    if(!notes){
-        notesMaxID=1;
-    }else{
-        notesMaxID= Math.max.apply(Math, notes);
+    var newId = 1;
+    if (!notes){
+        localStorage.setItem("notes", JSON.stringify([]));
+        notes = localStorage.getItem("notes");
     }
-
-
+    var notes = JSON.parse(notes);
+    var idMax = Math.max.apply(null, notes.map(function(a){return a.id;}));
+    (!idMax || idMax == '-Infinity') ? newId = 1 : newId = idMax+1;
     title = document.getElementById("title").value;
     description = document.getElementById("description").value;
     rating = document.querySelector('input[name="rating"]:checked').value;
-    creatDate = moment().format('LL');
-    finishDate = formatFinishDate();
+    creatDate = new Date();
+    finishDate = document.getElementById("fdate").value;
     finished = 0;
 
 
     var newNote = {
-        'id': notesMaxID,
+        'id': newId,
         'title': title,
         'description': description,
         'rating' : rating,
@@ -38,7 +37,6 @@ function addNewNote(title, description, rating, creatDate, finishDate, finished)
         'finishDate' : finishDate,
         'finished' : finished
     };
-
     notes.push(newNote);
     localStorage.setItem("notes", JSON.stringify(notes));
 };

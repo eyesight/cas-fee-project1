@@ -28,12 +28,12 @@
 	<nav class="main-nav">
 		<p class="main-nav__pre">sort by</p>
 		<div class="main-nav__wrapper">
-			<ul class="main-nav__list">
-				<li class="main-nav__element active"><span>finish date</span></li>
-				<li class="main-nav__element"><span>created date</span></li>
-				<li class="main-nav__element"><span>importance</span></li>
+			<ul id="sortBtns" class="main-nav__list">
+				<li id="finishDateBtn" class="main-nav__element"><span>finish date</span></li>
+				<li id="createdDateBtn" class="main-nav__element"><span>created date</span></li>
+				<li id="importanceBtn" class="main-nav__element"><span>importance</span></li>
 			</ul>
-			<button class="main-nav__element main-nav__finish">show finished</button>
+			<button id="showFinishedBtn" class="main-nav__element main-nav__finish">show finished</button>
 		</div>
 	</nav>
 	<div id="notesNumber"></div>
@@ -70,8 +70,8 @@
 			</div>
 			<div class="note__element note__text-wrapper">
 				<div class="note__text-element note__date">
-					<p>{{finishDate}}</p>
-					<p>{{id}}</p>
+					<p>zu erledigen bis <br>{{finishDate}}</p>
+					<p><br>erstellt am <br>{{creatDate}}</p>
 				</div>
 				<div class="note__text-element note__text">
 					<h2 >{{title}}</h2>
