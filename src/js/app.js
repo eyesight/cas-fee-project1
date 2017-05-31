@@ -37,11 +37,6 @@ Handlebars.registerHelper('buttonActive', function(){
     return button = "";
 });
 
-function getNoteDataParsed(){
-    var notes = getNoteData();
-    return JSON.parse(notes);
-}
-
 //Handebar-Render-Function
 function templateToHtml(){
     var notesData = getNoteDataParsed();
@@ -64,7 +59,6 @@ function styleChanger(){
 }
 
 //Sort-Functions
-//To-Do: add them to one function
 function sortByFinishDate(){
     var notesData = getNoteDataParsed();
     var sortedNotes = notesData.sort(function(a,b){
@@ -101,7 +95,7 @@ function btnAddActive(btnClicked){
     sessionStorage.setItem('sortby', newSortBy);
     allBtn.forEach(function(e){
         return e.classList.remove('active');
-    })
+    });
     btnClicked.classList.add("active");
 
     switch(newSortBy){
@@ -110,12 +104,12 @@ function btnAddActive(btnClicked){
             break;
         case 'createdDateBtn':
             sortByCreatedDate();
-            break
+            break;
         case 'importanceBtn':
             sortByImportance();
-            break
+            break;
         default:
-            break
+            break;
     }
 }
 

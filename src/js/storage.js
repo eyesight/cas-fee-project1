@@ -12,6 +12,11 @@ function getNoteData(){
     return notes;
 }
 
+function getNoteDataParsed(){
+    var notes = getNoteData();
+    return JSON.parse(notes);
+}
+
 function getStyleData(){
     var actualStyle = localStorage.getItem('styleClassName');
     if(!actualStyle){
@@ -34,5 +39,10 @@ function getSortByBtn(){
         }
     });
     return sortbyBtn;
+}
+
+function getNoteID(){
+    var actNoteID = getNoteDataParsed();
+    console.log(actNoteID);
 }
 

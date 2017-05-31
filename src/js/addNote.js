@@ -3,7 +3,6 @@
  * Created by claudia on 27.05.17.
  */
 //Notes initialiser, add new notes
-//To-do: set testnotes from testnotes.js for empty storage
 function formatFinishDate(finishDate){
     finishDate = document.getElementById("fdate").value;
     finishDate = moment(finishDate).format('LL');
