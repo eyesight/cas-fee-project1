@@ -41,8 +41,3 @@ function getSortByBtn(){
     return sortbyBtn;
 }
 
-function getNoteID(){
-    var actNoteID = getNoteDataParsed();
-    console.log(actNoteID);
-}
-

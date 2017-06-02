@@ -48,7 +48,30 @@ function templateToHtml(){
     var noteswrap = document.querySelector('#notesContainer');
     noteswrap.innerHTML = generatedNote;
 
+    //Event-Listener change finished-status
+    var playButton = document.querySelectorAll('.note__finish-wrapper');
+    var finishBtnStatus = 0;
+    playButton.forEach(function(el, index){el.addEventListener('click', function (el) {
+        var selectedID = Number(playButton[index].id);
+        for(var i=0; i<notesData.length;i++){
+            if(selectedID === notesData[i].id){
+                finishBtnStatus = notesData[i].finished;
+                if(finishBtnStatus === 0){
+                    finishBtnStatus = 1;
+                }
+                else {
+                    finishBtnStatus = 0;
+                }
+                notesData[i].finished = finishBtnStatus;
+            }
+        }
+        localStorage.setItem("notes", JSON.stringify(notesData));
+        location.reload();
+    }, false)});
+
+    return generatedNote;
 }
+
 
 //Stylechanger
 function styleChanger(){
