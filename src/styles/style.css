@@ -272,17 +272,19 @@ h2{
     padding-bottom: 12%;
 }
 
-.note__container .btn:hover span,
-.note__container .btn:focus span,
-.note__container .btn.active span{
+.note__container :hover span,
+.note__container :focus span,
+.note__container .active span{
     display: none;
     padding-bottom:0;
 }
-.note__quetionmark{
+.note__container :hover span.note__quetionmark,
+.note__container :focus span.note__quetionmark{
     display: inline-block;
 }
 
-.btn.active .note__quetionmark{
+.note__container .active:hover span.note__quetionmark,
+.note__container .active .note__quetionmark{
     display:none;
 }
 

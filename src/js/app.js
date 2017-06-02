@@ -49,10 +49,10 @@ function templateToHtml(){
     noteswrap.innerHTML = generatedNote;
 
     //Event-Listener change finished-status
-    var playButton = document.querySelectorAll('.note__finish-wrapper');
+    var finishButton = document.querySelectorAll('.note__finish-wrapper');
     var finishBtnStatus = 0;
-    playButton.forEach(function(el, index){el.addEventListener('click', function (el) {
-        var selectedID = Number(playButton[index].id);
+    finishButton.forEach(function(el, index){el.addEventListener('click', function (el) {
+        var selectedID = Number(finishButton[index].id);
         for(var i=0; i<notesData.length;i++){
             if(selectedID === notesData[i].id){
                 finishBtnStatus = notesData[i].finished;
