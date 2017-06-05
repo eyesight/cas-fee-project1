@@ -7,7 +7,6 @@
 //Notes initialiser, add new notes
 //To-do: build a function to get better formatted dates and maybe a counter
 function formatFinishDate(finishDate){
-    finishDate = document.getElementById("fdate").value;
     finishDate = moment(finishDate).format('LL');
     return finishDate;
 }
@@ -29,7 +28,6 @@ function addNewNote(title, description, rating, creatDate, finishDate, finished)
     creatDate = new Date();
     finishDate = document.getElementById("fdate").value;
     finished = 0;
-
 
     var newNote = {
         'id': newId,
