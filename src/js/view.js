@@ -92,6 +92,7 @@ function templateToHtml(){
     });
     });
 
+
     return generatedNote;
 }
 
@@ -163,6 +164,7 @@ function btnAddActive(btnClicked){
 
 //To-do: Function show just finished notes
 function showFinishNotes(finishedData){
+    finishedData = getNoteDataParsed();
     var indexOfNotes = [];
 
     for(var i = 0; i<finishedData.length;i++){
@@ -170,6 +172,6 @@ function showFinishNotes(finishedData){
             finishedData.splice(i, 1);
         }
     }
+    console.log(finishedData);
     return finishedData;
 }
-

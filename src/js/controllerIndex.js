@@ -11,6 +11,6 @@ window.addEventListener('load', getSortByBtn);
 window.addEventListener('change', styleChanger);
 window.addEventListener('load', getSelectedNoteID);
 
+document.querySelector('#showFinishedBtn').addEventListener('click', showFinishNotes)
 document.querySelectorAll('#sortBtns li').forEach(function(e){e.addEventListener('click', btnAddActive)});
-//document.querySelector('#showFinishedBtn').addEventListener('click', )
 
