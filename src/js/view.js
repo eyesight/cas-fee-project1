@@ -4,7 +4,6 @@
  * functions to render the pages
  **/
 
-
 //Handebar-Helpers
 Handlebars.registerHelper('ratingCounter', function(){
     var ratingNumber = Handlebars.escapeExpression(this.rating);
