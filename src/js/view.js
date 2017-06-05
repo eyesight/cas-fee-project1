@@ -4,7 +4,6 @@
  * functions to render the pages
  **/
 
-
 //Handebar-Helpers
 Handlebars.registerHelper('ratingCounter', function(){
     var ratingNumber = Handlebars.escapeExpression(this.rating);
@@ -46,10 +45,34 @@ Handlebars.registerHelper('buttonActive', function(){
 //Handebar-Render-Function
 function templateToHtml(){
     var notesData = getNoteDataParsed();
+    //get sortBy from sessionStore by function getSortByBtn (from storage)
+    var newSortBy = getSortByBtn();
+    //get showFinished-Status by function getFinished (from storage)
+    var showFinished = getShowFinished();
 
     var temp = document.querySelector('#noteTemplate').innerHTML;
 
     var compiledTemp = Handlebars.compile(temp);
+
+    switch(newSortBy){
+        case 'finishDateBtn':
+            notesData = sortByFinishDate(notesData);
+            break;
+        case 'createdDateBtn':
+            notesData = sortByCreatedDate(notesData);
+            break;
+        case 'importanceBtn':
+            notesData = sortByImportance(notesData);
+            break;
+        default:
+            break;
+    }
+
+    //check if Button "show finished Notes" is clicked, if yes: render notesData with function showFinishNotes
+    if(showFinished == 1){
+        notesData = showFinishNotes(notesData);
+    }
+
     var generatedNote = compiledTemp(notesData);
 
     var noteswrap = document.querySelector('#notesContainer');
@@ -87,7 +110,7 @@ function templateToHtml(){
             if(selectedID === notesData[i].id) {
                 sessionStorage.setItem('selectedID', selectedID);
             }
-        };
+        }
         window.location.replace("editNote.html");
     });
     });
@@ -104,71 +127,59 @@ function styleChanger(){
 }
 
 //Sort-Functions - get the Data from the notes-object and return it sorted
-function sortByFinishDate(){
-    var notesData = getNoteDataParsed();
-    var sortedNotes = notesData.sort(function(a,b){
+function sortByFinishDate(sortedData){
+    var sortedNotes = sortedData.sort(function(a,b){
         return (a.finishDate > b.finishDate) ? 1 : ((b.finishDate > a.finishDate) ? -1 : 0);
     });
-    localStorage.setItem("notes", JSON.stringify(sortedNotes));
+    return sortedNotes;
+
     //rerender the page with sorted notes
     window.location.replace("index.html");
 }
 
-function sortByCreatedDate(){
-    var notesData = getNoteDataParsed();
-    var sortedNotes = notesData.sort(function(a,b){
+function sortByCreatedDate(sortedData){
+    var sortedNotes = sortedData.sort(function(a,b){
         return (a.creatDate > b.creatDate) ? 1 : ((b.creatDate > a.creatDate) ? -1 : 0);
     });
-    localStorage.setItem("notes", JSON.stringify(sortedNotes));
+    return sortedNotes;
+
     //rerender the page with sorted notes
     window.location.replace("index.html");
 }
 
-function sortByImportance(){
-    var notesData = getNoteDataParsed();
-    var sortedNotes = notesData.sort(function(a,b){
+function sortByImportance(sortedData){
+    var sortedNotes = sortedData.sort(function(a,b){
         return (a.rating > b.rating) ? -1 : ((b.rating > a.rating) ? 1 : 0);
     });
-    localStorage.setItem("notes", JSON.stringify(sortedNotes));
+    return sortedNotes;
+
     //rerender the page with sorted notes
     window.location.replace("index.html");
 }
 
-
-//Function to add class to activated Sort-Button, add sorting-function
-function btnAddActive(btnClicked){
-    btnClicked = this;
-    var newSortBy = this.id;
-    var allBtn = document.querySelectorAll('#sortBtns li');
-    sessionStorage.setItem('sortby', newSortBy);
-    allBtn.forEach(function(e){
-        return e.classList.remove('active');
-    });
-    btnClicked.classList.add("active");
-
-    switch(newSortBy){
-        case 'finishDateBtn':
-            sortByFinishDate();
-            break;
-        case 'createdDateBtn':
-            sortByCreatedDate();
-            break;
-        case 'importanceBtn':
-            sortByImportance();
-            break;
-        default:
-            break;
-    }
-}
-
-//To-do: Function show just finished notes
+//Function show just finished notes
 function showFinishNotes(finishedData){
+    var showFinished = getShowFinished();
     var indexOfNotes = [];
+    var btnFinish = document.querySelector('#showFinishedBtn');
 
     for(var i = 0; i<finishedData.length;i++){
         if(finishedData[i].finished === 0){
             finishedData.splice(i, 1);
         }
     }
+
+    // add/remove class active to finish-Button
+    if(btnFinish.classList.contains('active')){
+        btnFinish.classList.remove('active');
+    }else{
+        btnFinish.classList.add('active');
+    }
+    if(showFinished == 0){
+        sessionStorage.setItem('showFinished', '1');
+    } else{
+        sessionStorage.setItem('showFinished', '0');
+    }
+
     return finishedData;
 }

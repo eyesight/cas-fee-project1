@@ -4,7 +4,6 @@
  * functions to get Data, which is stored in the localStorage or the sessionSorage
  **/
 
-
 //Get the the data from the localStorage - all Notes, when nothing is in it, take the default notes form file "testnotes.js"
 function getNoteData(){
     var notes = localStorage.getItem('notes');
@@ -69,5 +68,15 @@ function getSelectedNote(){
         }
     }
     return selectedNote;
+}
+
+// set/get finished btn
+function getShowFinished(){
+    var showFinished = sessionStorage.getItem('showFinished');
+    //if there isn't clicked on show-finished-Btn, initial Item in sessionStore
+    if(!showFinished){
+        sessionStorage.setItem('showFinished', '0');
+    }
+    return showFinished;
 }
 
