@@ -4,6 +4,7 @@
  * functions to render the pages
  **/
 
+
 //Handebar-Helpers
 Handlebars.registerHelper('ratingCounter', function(){
     var ratingNumber = Handlebars.escapeExpression(this.rating);
@@ -45,6 +46,7 @@ Handlebars.registerHelper('buttonActive', function(){
 //Handebar-Render-Function
 function templateToHtml(){
     var notesData = getNoteDataParsed();
+
     var temp = document.querySelector('#noteTemplate').innerHTML;
 
     var compiledTemp = Handlebars.compile(temp);
@@ -160,7 +162,13 @@ function btnAddActive(btnClicked){
 }
 
 //To-do: Function show just finished notes
-function showFinishNotes(){
-    var notesData = getNoteDataParsed();
+function showFinishNotes(finishedData){
+    var indexOfNotes = [];
 
+    for(var i = 0; i<finishedData.length;i++){
+        if(finishedData[i].finished === 0){
+            finishedData.splice(i, 1);
+        }
+    }
+    return finishedData;
 }
