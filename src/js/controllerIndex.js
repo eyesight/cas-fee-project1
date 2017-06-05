@@ -1,6 +1,7 @@
 "use strict";
 /**
  * Created by claudia on 25.05.17.
+ * EventListeners for the index.html-file
  */
 
 //Run EventListener

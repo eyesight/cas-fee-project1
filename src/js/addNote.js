@@ -1,7 +1,9 @@
 "use strict";
 /**
  * Created by claudia on 27.05.17.
+ * functions to manipulate the stored Notes: add, delete and edit them
  */
+
 //Notes initialiser, add new notes
 //To-do: build a function to get better formatted dates and maybe a counter
 function formatFinishDate(finishDate){

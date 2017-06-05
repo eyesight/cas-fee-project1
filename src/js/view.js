@@ -1,4 +1,9 @@
 "use strict";
+/**
+ * Created by claudia on 25.05.17.
+ * functions to render the pages
+ **/
+
 //Handebar-Helpers
 Handlebars.registerHelper('ratingCounter', function(){
     var ratingNumber = Handlebars.escapeExpression(this.rating);
@@ -88,7 +93,7 @@ function templateToHtml(){
     return generatedNote;
 }
 
-//Stylechanger: set local Storage
+//Stylechanger: set in local-Storage
 function styleChanger(){
     var actualStyle = getStyleData();
     actualStyle = document.querySelector('#stylesAll').value;
@@ -96,13 +101,14 @@ function styleChanger(){
     document.querySelector('body').className = actualStyle;
 }
 
-//Sort-Functions
+//Sort-Functions - get the Data from the notes-object and return it sorted
 function sortByFinishDate(){
     var notesData = getNoteDataParsed();
     var sortedNotes = notesData.sort(function(a,b){
         return (a.finishDate > b.finishDate) ? 1 : ((b.finishDate > a.finishDate) ? -1 : 0);
     });
     localStorage.setItem("notes", JSON.stringify(sortedNotes));
+    //rerender the page with sorted notes
     window.location.replace("index.html");
 }
 
@@ -112,6 +118,7 @@ function sortByCreatedDate(){
         return (a.creatDate > b.creatDate) ? 1 : ((b.creatDate > a.creatDate) ? -1 : 0);
     });
     localStorage.setItem("notes", JSON.stringify(sortedNotes));
+    //rerender the page with sorted notes
     window.location.replace("index.html");
 }
 
@@ -121,11 +128,12 @@ function sortByImportance(){
         return (a.rating > b.rating) ? -1 : ((b.rating > a.rating) ? 1 : 0);
     });
     localStorage.setItem("notes", JSON.stringify(sortedNotes));
+    //rerender the page with sorted notes
     window.location.replace("index.html");
 }
 
 
-//Function to add class to activated Sort-Button, add function of sorting
+//Function to add class to activated Sort-Button, add sorting-function
 function btnAddActive(btnClicked){
     btnClicked = this;
     var newSortBy = this.id;
