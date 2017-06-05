@@ -105,6 +105,8 @@ function editNote(id, title, description, rating, creatDate, finishDate, finishe
     window.location.replace("index.html");
 }
 
+//delete selected note
+//To-do: add a Page to ask if you are shure between
 function deleteNote(){
     var selectedNote = getSelectedNote();
     var notes = getNoteDataParsed();

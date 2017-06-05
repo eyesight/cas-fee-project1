@@ -125,7 +125,7 @@ function sortByImportance(){
 }
 
 
-//Function to add class to activated Sort-Button
+//Function to add class to activated Sort-Button, add function of sorting
 function btnAddActive(btnClicked){
     btnClicked = this;
     var newSortBy = this.id;
@@ -151,3 +151,8 @@ function btnAddActive(btnClicked){
     }
 }
 
+//To-do: Function show just finished notes
+function showFinishNotes(){
+    var notesData = getNoteDataParsed();
+
+}
