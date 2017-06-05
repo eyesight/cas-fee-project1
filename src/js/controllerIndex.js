@@ -8,5 +8,6 @@ window.addEventListener('load', templateToHtml);
 window.addEventListener('load', getStyleData);
 window.addEventListener('load', getSortByBtn);
 window.addEventListener('change', styleChanger);
+window.addEventListener('load', getSelectedNoteID);
 document.querySelectorAll("#sortBtns li").forEach(function(e){e.addEventListener('click', btnAddActive)});
 

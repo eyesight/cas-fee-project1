@@ -41,3 +41,23 @@ function getSortByBtn(){
     return sortbyBtn;
 }
 
+function getSelectedNoteID(){
+    var selectedNoteID = sessionStorage.getItem('selectedID');
+    if(!selectedNoteID){
+        sessionStorage.setItem('selectedID', JSON.stringify([]));
+    }
+    return selectedNoteID;
+}
+
+function getSelectedNote(){
+    var allNotes = getNoteDataParsed();
+    var selectedID = getSelectedNoteID();
+    var selectedNote={};
+    for(var i = 0; i<allNotes.length; i++){
+        if(selectedID == allNotes[i].id){
+            selectedNote = allNotes[i];
+        }
+    }
+    return selectedNote;
+}
+

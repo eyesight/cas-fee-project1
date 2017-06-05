@@ -51,7 +51,7 @@ function templateToHtml(){
     //Event-Listener change finished-status
     var finishButton = document.querySelectorAll('.note__finish-wrapper');
     var finishBtnStatus = 0;
-    finishButton.forEach(function(el, index){el.addEventListener('click', function (el) {
+    finishButton.forEach(function(el, index){el.addEventListener('click', function(e){
         var selectedID = Number(finishButton[index].id);
         for(var i=0; i<notesData.length;i++){
             if(selectedID === notesData[i].id){
@@ -69,11 +69,26 @@ function templateToHtml(){
         location.reload();
     }, false)});
 
+    //Event-Listener get ID of note by click on edit Button
+    var editButton = document.querySelectorAll('.note__edit-wrapper');
+    var selectNoteID = getSelectedNoteID();
+
+    editButton.forEach(function(el, index){el.addEventListener('click', function(e){
+        var selectedID = editButton[index].id;
+        selectedID = Number(selectedID.match(/\d+/g));
+        for(var i=0; i<notesData.length;i++) {
+            if(selectedID === notesData[i].id) {
+                sessionStorage.setItem('selectedID', selectedID);
+            }
+        };
+        window.location.replace("editNote.html");
+    });
+    });
+
     return generatedNote;
 }
 
-
-//Stylechanger
+//Stylechanger: set local Storage
 function styleChanger(){
     var actualStyle = getStyleData();
     actualStyle = document.querySelector('#stylesAll').value;
@@ -88,7 +103,7 @@ function sortByFinishDate(){
         return (a.finishDate > b.finishDate) ? 1 : ((b.finishDate > a.finishDate) ? -1 : 0);
     });
     localStorage.setItem("notes", JSON.stringify(sortedNotes));
-    location.reload();
+    window.location.replace("index.html");
 }
 
 function sortByCreatedDate(){
@@ -97,7 +112,7 @@ function sortByCreatedDate(){
         return (a.creatDate > b.creatDate) ? 1 : ((b.creatDate > a.creatDate) ? -1 : 0);
     });
     localStorage.setItem("notes", JSON.stringify(sortedNotes));
-    location.reload();
+    window.location.replace("index.html");
 }
 
 function sortByImportance(){
@@ -106,7 +121,7 @@ function sortByImportance(){
         return (a.rating > b.rating) ? -1 : ((b.rating > a.rating) ? 1 : 0);
     });
     localStorage.setItem("notes", JSON.stringify(sortedNotes));
-    location.reload();
+    window.location.replace("index.html");
 }
 
 

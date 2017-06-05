@@ -272,9 +272,9 @@ h2{
     padding-bottom: 12%;
 }
 
-.note__container :hover span,
-.note__container :focus span,
-.note__container .active span{
+.note__container :hover .note__btn--smalltext,
+.note__container :focus .note__btn--smalltext,
+.note__container .active .note__btn--smalltext{
     display: none;
     padding-bottom:0;
 }
@@ -293,7 +293,8 @@ h2{
 .note__finish-wrapper .btn.active,
 .note__edit-wrapper .btn:hover,
 .note__edit-wrapper .btn:focus,
-.note__edit-wrapper .btn.active{
+.note__edit-wrapper .btn.active
+.note__edit-wrapper a:hover {
     padding-bottom: 0;
 
     background-color:#fff;
