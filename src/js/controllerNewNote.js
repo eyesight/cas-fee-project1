@@ -1,11 +1,15 @@
+"use strict";
 /**
  * Created by claudia on 25.05.17.
  * Event-Listeners for the newNote.html-file
- */
+ **/
 
-window.addEventListener('load', getStyleData);
-window.addEventListener('load', getNoteData);
-window.addEventListener('load', getSelectedNoteID);
+window.onload = function () {
+    //start all Functions from the storage
+    initNewNote();
 
-document.getElementById("submitBtn").addEventListener('click', addNewNote);
+    document.getElementById("submitBtn").addEventListener('click', addNewNote);
+};
+
+
 

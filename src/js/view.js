@@ -69,17 +69,21 @@ function templateToHtml(){
     }
 
     //check if Button "show finished Notes" is clicked, if yes: render notesData with function showFinishNotes
-    if(showFinished == 1){
+    var finishButton = document.querySelectorAll('.note__finish-wrapper');
+
+    if(document.querySelector('#showFinishedBtn').classList.contains('active')){
         notesData = showFinishNotes(notesData);
+    } else{
+        notesData;
     }
 
-    var generatedNote = compiledTemp(notesData);
 
+    //render the Datas into the HTML-Container
+    var generatedNote = compiledTemp(notesData);
     var noteswrap = document.querySelector('#notesContainer');
     noteswrap.innerHTML = generatedNote;
 
     //Event-Listener change finished-status
-    var finishButton = document.querySelectorAll('.note__finish-wrapper');
     var finishBtnStatus = 0;
     finishButton.forEach(function(el, index){el.addEventListener('click', function(e){
         var selectedID = Number(finishButton[index].id);
@@ -115,7 +119,7 @@ function templateToHtml(){
     });
     });
 
-    return generatedNote;
+    return noteswrap;
 }
 
 //Stylechanger: set in local-Storage
@@ -132,9 +136,6 @@ function sortByFinishDate(sortedData){
         return (a.finishDate > b.finishDate) ? 1 : ((b.finishDate > a.finishDate) ? -1 : 0);
     });
     return sortedNotes;
-
-    //rerender the page with sorted notes
-    window.location.replace("index.html");
 }
 
 function sortByCreatedDate(sortedData){
@@ -142,9 +143,6 @@ function sortByCreatedDate(sortedData){
         return (a.creatDate > b.creatDate) ? 1 : ((b.creatDate > a.creatDate) ? -1 : 0);
     });
     return sortedNotes;
-
-    //rerender the page with sorted notes
-    window.location.replace("index.html");
 }
 
 function sortByImportance(sortedData){
@@ -152,9 +150,6 @@ function sortByImportance(sortedData){
         return (a.rating > b.rating) ? -1 : ((b.rating > a.rating) ? 1 : 0);
     });
     return sortedNotes;
-
-    //rerender the page with sorted notes
-    window.location.replace("index.html");
 }
 
 //Function show just finished notes
@@ -180,6 +175,6 @@ function showFinishNotes(finishedData){
     } else{
         sessionStorage.setItem('showFinished', '0');
     }
-
+    templateToHtml();
     return finishedData;
 }

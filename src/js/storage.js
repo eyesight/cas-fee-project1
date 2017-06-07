@@ -80,3 +80,24 @@ function getShowFinished(){
     return showFinished;
 }
 
+//init-functions
+function initIndex(){
+    templateToHtml();
+    getStyleData();
+    getSortByBtn();
+    getSelectedNoteID();
+    getShowFinished();
+}
+
+function initNewNote(){
+    getStyleData();
+    getNoteData();
+    getSelectedNoteID();
+}
+
+function initEditNote(){
+    getStyleData();
+    getNoteData();
+    getSelectedNoteID();
+    getNoteToEdit();
+}
