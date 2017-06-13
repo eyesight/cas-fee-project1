@@ -7,7 +7,7 @@ var defaultnotes = [
             "description": "Geschirr abwaschen, etc.",
             "rating": 2,
             "creatDate": "2017-05-20",
-            "finishDate": "2017-05-25",
+            "finishDate": "2017-05-28",
             "finished": 0
         },
         {
@@ -30,11 +30,11 @@ var defaultnotes = [
         },
         {
             "id": 3,
-            "title": "Serie fertig schauen",
-            "description": "Nanananananana ksdjf sjfa fjkal fjalkfjaslfja flajlf ajdflkasdg kvmyckjfk ads",
+            "title": "Serie",
+            "description": "ksdjf sjfa fjkal fjalkfjaslfja flajlf ajdflkasdg kvmyckjfk ads",
             "rating": 5,
             "creatDate": "2017-05-23",
-            "finishDate": "2017-05-28",
+            "finishDate": "2017-05-25",
             "finished": 0
         }
     ];

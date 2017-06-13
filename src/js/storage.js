@@ -1,69 +1,56 @@
 "use strict";
 /**
  * Created by claudia on 25.05.17.
- * functions to get Data, which is stored in the localStorage or the sessionSorage
+ * Modul, welches alle Funktionalitäten beinhaltet, welche benötigt werden um die Notes zu verwalten
+ *  z.B. folgende Funktionen
+    GetNotes(orderBy, filterBy)
+    AddNote(note)
+    UpdateNote(note)
+    GetNoteById(id)
  **/
+//TODO: Benennung nochmals genauer anschauen: nicht get, sondern set bei diesen funktionsnamen
+//TODO: es6--syntax verwenden
+//TODO: Der Store darf kein Zugriff auf den DOM haben. -> sicherstellen
 
-//Get the the data from the localStorage - all Notes, when nothing is in it, take the default notes form file "testnotes.js"
-function getNoteData(){
-    var notes = localStorage.getItem('notes');
-    //if no notes exist, set new Object notes
-    if(!notes){
-        notes = localStorage.setItem('notes', JSON.stringify([]));
-        notes = localStorage.setItem('notes', JSON.stringify(defaultnotes));
+//Add the new note
+//TODO: addNewNote(note)-> übergib note ohne auf DOME zuzugreifen
+function addNewNote(title, description, rating, creatDate, finishDate, finished){
+    let notes = applyNoteData();
+    let newId = 1;
+    if (!notes){
+        localStorage.setItem("notes", JSON.stringify([]));
+        notes = localStorage.getItem("notes");
     }
-    return notes;
-}
+    let notes = JSON.parse(notes);
+    let idMax = Math.max.apply(null, notes.map(function(a){return a.id;}));
+    (!idMax || idMax === '-Infinity') ? newId = 1 : newId = idMax+1;
+    title = document.getElementById("title").value;
+    description = document.getElementById("description").value;
+    rating = document.querySelector('input[name="rating"]:checked').value;
+    creatDate = new Date();
+    finishDate = document.getElementById("fdate").value;
+    finished = 0;
 
-//function to parse the data from the localStorage
-function getNoteDataParsed(){
-    var notes = getNoteData();
-    return JSON.parse(notes);
-}
-
-//get the class Name from the storage to change the style (classname is set in the body-tag)
-function getStyleData(){
-    var actualStyle = localStorage.getItem('styleClassName');
-    if(!actualStyle){
-        localStorage.setItem('styleClassName', 'colorful');
-    }
-
-    document.querySelector('body').className = actualStyle;
-    return actualStyle;
-}
-
-//get the stored sortBy-Element - so the sort-function doesn't change by adding new note.
-function getSortByBtn(){
-    var sortbyBtn = sessionStorage.getItem('sortby');
-    //if there isn't clicked on a sortby-link, initial Item in sessionStore and take "sort by finished Date" as default sort-function
-    if(!sortbyBtn){
-        sessionStorage.setItem('sortby', 'finishDateBtn');
-        sortByFinishDate();
-    }
-    document.querySelectorAll("#sortBtns li").forEach(function(e){
-        if(e.id == sortbyBtn){
-            e.classList.add("active");
-        }
-    });
-    return sortbyBtn;
-}
-
-//get/put the ID of the selected Note to the sessionStorage
-function getSelectedNoteID(){
-    var selectedNoteID = sessionStorage.getItem('selectedID');
-    if(!selectedNoteID){
-        sessionStorage.setItem('selectedID', JSON.stringify([]));
-    }
-    return selectedNoteID;
+    let newNote = {
+        'id': newId,
+        'title': title,
+        'description': description,
+        'rating' : rating,
+        'creatDate' : creatDate,
+        'finishDate' : finishDate,
+        'finished' : finished
+    };
+    notes.push(newNote);
+    localStorage.setItem("notes", JSON.stringify(notes));
 }
 
 //get all the Data form the selection Note by the selected ID
-function getSelectedNote(){
-    var allNotes = getNoteDataParsed();
-    var selectedID = getSelectedNoteID();
-    var selectedNote={};
-    for(var i = 0; i<allNotes.length; i++){
-        if(selectedID == allNotes[i].id){
+function getNoteByID(id){
+    let allNotes = parseNoteData();
+    id = Number(id);
+    let selectedNote={};
+    for(let i = 0; i<allNotes.length; i++){
+        if(id == allNotes[i].id){
             selectedNote = allNotes[i];
         }
     }
@@ -71,8 +58,8 @@ function getSelectedNote(){
 }
 
 // set/get finished btn
-function getShowFinished(){
-    var showFinished = sessionStorage.getItem('showFinished');
+function applyShowFinished(){
+    let showFinished = sessionStorage.getItem('showFinished');
     //if there isn't clicked on show-finished-Btn, initial Item in sessionStore
     if(!showFinished){
         sessionStorage.setItem('showFinished', '0');
@@ -80,24 +67,121 @@ function getShowFinished(){
     return showFinished;
 }
 
-//init-functions
-function initIndex(){
-    templateToHtml();
-    getStyleData();
-    getSortByBtn();
-    getSelectedNoteID();
-    getShowFinished();
+//Event-Listener get ID of clicked edit Button
+function setSelectedNoteID(e){
+    let selectedID = e.currentTarget.id;
+
+    //remove all text-elements of the ID - ID is just a number
+    selectedID = Number(selectedID.match(/\d+/g));
+    sessionStorage.setItem('selectedID', selectedID);
+    return selectedID;
 }
 
-function initNewNote(){
-    getStyleData();
-    getNoteData();
-    getSelectedNoteID();
+//Sort-Functions - get the Data from the notes-object and return it sorted
+//TODO: sortfunctions zusammenfassen
+function sortByFinishDate(sortedData){
+    let sortedNotes = sortedData.sort(function(a,b){
+        return (a.finishDate > b.finishDate) ? 1 : ((b.finishDate > a.finishDate) ? -1 : 0);
+    });
+    return sortedNotes;
 }
 
-function initEditNote(){
-    getStyleData();
-    getNoteData();
-    getSelectedNoteID();
-    getNoteToEdit();
+function sortByCreatedDate(sortedData){
+    let sortedNotes = sortedData.sort(function(a,b){
+        return (a.creatDate < b.creatDate) ? 1 : ((b.creatDate < a.creatDate) ? -1 : 0);
+    });
+    return sortedNotes;
 }
+
+function sortByImportance(sortedData){
+    let sortedNotes = sortedData.sort(function(a,b){
+        return (a.rating > b.rating) ? -1 : ((b.rating > a.rating) ? 1 : 0);
+    });
+    return sortedNotes;
+}
+
+//Function show just finished notes
+function showFinishNotes(finishedData){
+    let indexOfNotes = [];
+    for(let i = 0; i<finishedData.length;i++){
+        if(finishedData[i].finished === 0){
+            finishedData.splice(i, 1);
+        }
+    }
+    return finishedData;
+}
+
+//Notes initialiser, add new notes
+//TODO: build a function to get better formatted dates and maybe a counter
+function formatFinishDate(finishDate){
+    //TODO: delete this DOME-OBJECT
+    finishDate = document.getElementById("fdate").value;
+    finishDate = moment(finishDate).format('LL');
+    return finishDate;
+}
+
+//Update the edited note -> replace the old note with the edited stuff
+function updateNote(id, title, description, rating, creatDate, finishDate, finished){
+    id = applySelectedNoteID();
+    let selectedNote = getNoteByID(id);
+    let notes = parseNoteData();
+
+    //get index of Object to remove it with splice
+    let indexOfNote = 0;
+    for(let i = 0; i<notes.length;i++){
+        if(notes[i].id === selectedNote.id){
+            indexOfNote = i;
+        }
+    }
+
+    id = selectedNote.id;
+    title = document.getElementById("title").value;
+    description = document.getElementById("description").value;
+    rating = document.querySelector('input[name="rating"]:checked').value;
+    creatDate = selectedNote.creatDate;
+    finishDate = document.getElementById("fdate").value;
+    finished = selectedNote.finished;
+
+    let editNote = {
+        'id': id,
+        'title': title,
+        'description': description,
+        'rating' : rating,
+        'creatDate' : creatDate,
+        'finishDate' : finishDate,
+        'finished' : finished
+    };
+
+    //replace the updated note with splice
+    notes.splice(indexOfNote, 1, editNote);
+
+    localStorage.setItem("notes", JSON.stringify(notes));
+    window.location.replace("index.html");
+}
+
+//delete selected note
+//TODO: add a Page to ask if you are shure between
+function deleteNote(){
+    let id = applySelectedNoteID();
+    let selectedNote = getNoteByID(id);
+    let notes = parseNoteData();
+
+    //get index of Object to remove it with splice
+    let indexOfNote = 0;
+    for(let i = 0; i<notes.length;i++){
+        if(notes[i].id === selectedNote.id){
+            indexOfNote = i;
+        }
+    }
+
+    notes.splice(indexOfNote, 1);
+    localStorage.setItem("notes", JSON.stringify(notes));
+    window.location.replace("index.html");
+}
+
+//by clicking on cancel-button go back to index.html
+function cancelNote(){
+    window.location.replace("index.html");
+}
+
+
