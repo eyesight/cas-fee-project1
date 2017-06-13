@@ -21,7 +21,7 @@ function addNewNote(title, description, rating, creatDate, finishDate, finished)
         localStorage.setItem("notes", JSON.stringify([]));
         notes = localStorage.getItem("notes");
     }
-    let notes = JSON.parse(notes);
+    notes = JSON.parse(notes);
     let idMax = Math.max.apply(null, notes.map(function(a){return a.id;}));
     (!idMax || idMax === '-Infinity') ? newId = 1 : newId = idMax+1;
     title = document.getElementById("title").value;

@@ -12,6 +12,7 @@
 //TODO: Klasse bei Change-Style noch setzen (auswahl fällt immer auf colorful zurück)
 
 function initIndex(){
+    applyNoteData();
     applyStyleData();
     applySortByBtn();
     applySelectedNoteID();
@@ -58,7 +59,7 @@ window.onload = function () {
     document.querySelectorAll('#sortBtns li').forEach(function(e) {
         let sortbyBtn = applySortByBtn();
         //set class "active" on sort-link by data from session-store
-        if(e.id === sortbyBtn){
+        if (e.id === sortbyBtn) {
             e.classList.add("active");
         }
         e.addEventListener('click', function(el) {
@@ -109,8 +110,8 @@ window.onload = function () {
 
     //By click on finish-Button, start function "noteIsFinished"
     let finishButton = document.querySelectorAll('.note__finish-wrapper');
-    finishButton.forEach(function(el) {
-        el.addEventListener('click', function(e) {
+    finishButton.forEach(function (el) {
+        el.addEventListener('click', function (e) {
             noteIsFinished(e);
             renderPage();
         });
@@ -119,8 +120,8 @@ window.onload = function () {
     //Event-Listener get ID of note by click on edit Button
     let editButton = document.querySelectorAll('.note__edit-wrapper');
 
-    editButton.forEach(function(el) {
-        el.addEventListener('click', function(e) {
+    editButton.forEach(function (el) {
+        el.addEventListener('click', function (e) {
             setSelectedNoteID(e);
             window.location.replace("editNote.html");
         });
