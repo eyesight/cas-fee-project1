@@ -8,8 +8,6 @@
     UpdateNote(note)
     GetNoteById(id)
  **/
-//TODO: Benennung nochmals genauer anschauen: nicht get, sondern set bei diesen funktionsnamen
-//TODO: es6--syntax verwenden
 //TODO: Der Store darf kein Zugriff auf den DOM haben. -> sicherstellen
 
 //Add the new note
@@ -153,10 +151,12 @@ function updateNote(id, title, description, rating, creatDate, finishDate, finis
     };
 
     //replace the updated note with splice
-    notes.splice(indexOfNote, 1, editNote);
-
-    localStorage.setItem("notes", JSON.stringify(notes));
-    window.location.replace("index.html");
+    if(notes){
+        notes.splice(indexOfNote, 1, editNote);
+        localStorage.setItem("notes", JSON.stringify(notes));
+        window.location.replace("index.html");
+        console.log('aa');
+    }
 }
 
 //delete selected note
@@ -179,9 +179,6 @@ function deleteNote(){
     window.location.replace("index.html");
 }
 
-//by clicking on cancel-button go back to index.html
-function cancelNote(){
-    window.location.replace("index.html");
-}
+
 
 

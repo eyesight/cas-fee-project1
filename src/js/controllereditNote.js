@@ -5,12 +5,11 @@
  **/
 
 function initEditNote(){
-    applyStyleData();
     applyNoteData();
+    applyStyleData();
     applySelectedNoteID();
     getNoteToEdit();
-};
-
+}
 //get the selected Note to the form to edit
 function getNoteToEdit(title, description, rating, creatDate, finishDate, finished){
     let id = applySelectedNoteID();
@@ -34,17 +33,18 @@ function getNoteToEdit(title, description, rating, creatDate, finishDate, finish
     document.getElementById("title").value = title;
     document.getElementById("description").value = description;
     document.getElementById("fdate").value = finishDate;
-};
+}
 
-window.onload = function () {
-    //start all Functions from the storage
+window.onload = function() {
     initEditNote();
-
-    document.getElementById("editBtn").addEventListener('click', updateNote);
-    document.getElementById("cancelBtn").addEventListener('click', cancelNote);
-    document.getElementById("deleteBtn").addEventListener('click', deleteNote);
+    document.querySelector("#cancelBtn").addEventListener('click', cancelNote);
+    document.querySelector("#deleteBtn").addEventListener('click', deleteNote);
+    document.querySelector('#editBtn').addEventListener('click', function () {
+        updateNote();
+        window.location.replace("index.html");
+    });
 };
-
-
-
-
+//by clicking on cancel-button go back to index.html
+function cancelNote(){
+    window.location.replace("index.html");
+};

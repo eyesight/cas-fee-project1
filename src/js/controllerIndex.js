@@ -10,6 +10,7 @@
 //TODO: beim Klicken auf Button sollte die Page neu gerendert werden (nicht nur der erste Klick)
 //TODO: die DOME-Registrierungen sollten nicht mit funktionen vermischt werden.
 //TODO: Klasse bei Change-Style noch setzen (auswahl fällt immer auf colorful zurück)
+//TODO: window.location.replace() für edit, save und delete korrigieren, damit weiterleitung funktioniert
 
 function initIndex(){
     applyNoteData();
@@ -54,7 +55,7 @@ window.onload = function () {
     //start all Functions from the storage
     initIndex();
 
-    window.addEventListener('change', styleChanger);
+    document.querySelector('body').addEventListener('change', styleChanger);
 
     document.querySelectorAll('#sortBtns li').forEach(function(e) {
         let sortbyBtn = applySortByBtn();
