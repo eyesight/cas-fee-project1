@@ -11,15 +11,9 @@
 //TODO: die DOME-Registrierungen sollten nicht mit funktionen vermischt werden.
 //TODO: Klasse bei Change-Style noch setzen (auswahl fällt immer auf colorful zurück)
 //TODO: window.location.replace() für edit, save und delete korrigieren, damit weiterleitung funktioniert
-
-function initIndex(){
-    applyNoteData();
-    applyStyleData();
-    applySortByBtn();
-    applySelectedNoteID();
-    applyShowFinished();
-    renderPage();
-}
+//Immediately-invokedFunctionExpression (IIFE)
+;(function(window, document) {
+    "use strict";
 
 //Stylechanger: set in local-Storage
 function styleChanger(){
@@ -50,14 +44,26 @@ function noteIsFinished(e){
     return selectedID;
 
 }
-
+//when dome is loaded
 window.onload = function () {
-    //start all Functions from the storage
-    initIndex();
+    //Set variables for EventListeners
+    const body = document.querySelector('body');
+    const btnsToSort = document.querySelectorAll('#sortBtns li');
+    const btnShowFinished = document.querySelector('#showFinishedBtn');
+    const btnsIfFinish = document.querySelectorAll('.note__finish-wrapper');
+    const btnsEdit = document.querySelectorAll('.note__edit-wrapper');
 
-    document.querySelector('body').addEventListener('change', styleChanger);
+    //start all Functions applying the storage
+    applyNoteData();
+    applyStyleData();
+    applySortByBtn();
+    applySelectedNoteID();
+    applyShowFinished();
+    renderPage();
 
-    document.querySelectorAll('#sortBtns li').forEach(function(e) {
+    body.addEventListener('change', styleChanger);
+
+    btnsToSort.forEach(function(e) {
         let sortbyBtn = applySortByBtn();
         //set class "active" on sort-link by data from session-store
         if (e.id === sortbyBtn) {
@@ -69,7 +75,7 @@ window.onload = function () {
         });
     });
 
-    document.querySelector('#showFinishedBtn').addEventListener('click', btnFinishedAddActive);
+    btnShowFinished.addEventListener('click', btnFinishedAddActive);
 
     //Function to add class to activated Sort-Button
     function btnAddActive(e) {
@@ -110,8 +116,8 @@ window.onload = function () {
     }
 
     //By click on finish-Button, start function "noteIsFinished"
-    let finishButton = document.querySelectorAll('.note__finish-wrapper');
-    finishButton.forEach(function (el) {
+
+    btnsIfFinish.forEach(function (el) {
         el.addEventListener('click', function (e) {
             noteIsFinished(e);
             renderPage();
@@ -119,13 +125,11 @@ window.onload = function () {
     });
 
     //Event-Listener get ID of note by click on edit Button
-    let editButton = document.querySelectorAll('.note__edit-wrapper');
-
-    editButton.forEach(function (el) {
+    btnsEdit.forEach(function (el) {
         el.addEventListener('click', function (e) {
             setSelectedNoteID(e);
             window.location.replace("editNote.html");
         });
     });
 };
-
+}(window, document));

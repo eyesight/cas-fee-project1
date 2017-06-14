@@ -45,7 +45,8 @@ function renderPage(){
     //get sortBy from sessionStore by function applySortByBtn (from storage)
     let newSortBy = applySortByBtn();
     //get showFinished-Status by function getFinished (from storage)
-    let showFinished = applyShowFinished();
+    let showFinished = sessionStorage.getItem('showFinished');
+    showFinished = applyShowFinished();
 
     let temp = document.querySelector('#noteTemplate').innerHTML;
 

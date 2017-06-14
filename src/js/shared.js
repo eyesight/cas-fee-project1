@@ -27,8 +27,6 @@ function applyStyleData(){
     if(!actualStyle){
         localStorage.setItem('styleClassName', 'colorful');
     }
-    //TODO: DOM-Element nicht in funktion
-    document.querySelector('body').className = actualStyle;
     return actualStyle;
 }
 
@@ -49,4 +47,24 @@ function applySelectedNoteID(){
         sessionStorage.setItem('selectedID', JSON.stringify([]));
     }
     return selectedNoteID;
+}
+
+// set/get finished btn
+function applyShowFinished(){
+    let showFinished = sessionStorage.getItem('showFinished');
+    //if there isn't clicked on show-finished-Btn, initial Item in sessionStore
+    if(!showFinished){
+        sessionStorage.setItem('showFinished', '0');
+    }
+    return showFinished;
+}
+
+//Event-Listener get ID of clicked edit Button
+function setSelectedNoteID(e){
+    let selectedID = e.currentTarget.id;
+
+    //remove all text-elements of the ID - ID is just a number
+    selectedID = Number(selectedID.match(/\d+/g));
+    sessionStorage.setItem('selectedID', selectedID);
+    return selectedID;
 }
