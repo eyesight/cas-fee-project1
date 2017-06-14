@@ -1,4 +1,3 @@
-"use strict";
 /**
  * Created by claudia on 25.05.17.
  * EventListeners for the index.html-file
@@ -52,6 +51,7 @@ window.onload = function () {
     const btnShowFinished = document.querySelector('#showFinishedBtn');
     const btnsIfFinish = document.querySelectorAll('.note__finish-wrapper');
     const btnsEdit = document.querySelectorAll('.note__edit-wrapper');
+    const optionsStyle = document.querySelectorAll('.style');
 
     //start all Functions applying the storage
     applyNoteData();
@@ -61,7 +61,16 @@ window.onload = function () {
     applyShowFinished();
     renderPage();
 
+    //set Style
+    let actualStyle = applyStyleData();
     body.addEventListener('change', styleChanger);
+    document.querySelector('body').className = actualStyle;
+    
+    optionsStyle.forEach(function(e){
+        if(e.value == actualStyle){
+            e.selected = true;
+        }
+    });
 
     btnsToSort.forEach(function(e) {
         let sortbyBtn = applySortByBtn();

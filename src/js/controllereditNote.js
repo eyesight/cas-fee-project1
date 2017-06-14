@@ -74,7 +74,7 @@ window.onload = function() {
         let finished = selectedNote.finished;
 
         updateNote(allNotes, selectedNote, id, title, description, rating, creatDate, finishDate, finished);
-        window.location.replace("index.html");
+        router.navigateTo("index.html");
     });
 };
 

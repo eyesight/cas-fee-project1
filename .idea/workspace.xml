@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e30a9da7-3bb9-459b-b6ea-69c54ee211ed" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/editNote.html" afterPath="$PROJECT_DIR$/src/editNote.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/controllerIndex.js" afterPath="$PROJECT_DIR$/src/js/controllerIndex.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/controllerNewNote.js" afterPath="$PROJECT_DIR$/src/js/controllerNewNote.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/controllereditNote.js" afterPath="$PROJECT_DIR$/src/js/controllereditNote.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/handlebars.js" afterPath="$PROJECT_DIR$/src/js/handlebars.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/shared.js" afterPath="$PROJECT_DIR$/src/js/shared.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/storage.js" afterPath="$PROJECT_DIR$/src/js/storage.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,8 +20,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="49" column="57" lean-forward="false" selection-start-line="49" selection-start-column="57" selection-end-line="49" selection-end-column="57" />
+            <state relative-caret-position="304">
+              <caret line="23" column="32" lean-forward="false" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -37,8 +30,8 @@
       <file leaf-file-name="handlebars.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/handlebars.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="48" column="37" lean-forward="false" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
+            <state relative-caret-position="293">
+              <caret line="42" column="9" lean-forward="false" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -57,9 +50,11 @@
       <file leaf-file-name="controllerIndex.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/controllerIndex.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="9" lean-forward="false" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
-              <folding />
+            <state relative-caret-position="492">
+              <caret line="67" column="4" lean-forward="false" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="4" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -77,8 +72,8 @@
       <file leaf-file-name="shared.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/shared.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+            <state relative-caret-position="287">
+              <caret line="24" column="17" lean-forward="false" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -87,8 +82,8 @@
       <file leaf-file-name="controllerEditNote.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/controllerEditNote.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="44" column="38" lean-forward="true" selection-start-line="43" selection-start-column="4" selection-end-line="44" selection-end-column="38" />
+            <state relative-caret-position="656">
+              <caret line="78" column="2" lean-forward="true" selection-start-line="78" selection-start-column="2" selection-end-line="78" selection-end-column="2" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -99,7 +94,7 @@
       <file leaf-file-name="storage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/storage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
+            <state relative-caret-position="668">
               <caret line="124" column="28" lean-forward="true" selection-start-line="124" selection-start-column="28" selection-end-line="124" selection-end-column="28" />
               <folding />
             </state>
@@ -109,7 +104,7 @@
       <file leaf-file-name="controllerNewNote.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/controllerNewNote.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
+            <state relative-caret-position="240">
               <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -159,8 +154,8 @@
       <find>selectNoteIDToEdit</find>
       <find>getNoteByID</find>
       <find>editBtn</find>
-      <find>applyNoteData</find>
       <find>rating</find>
+      <find>applyNoteData</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -215,8 +210,8 @@
         <option value="$PROJECT_DIR$/src/editNote.html" />
         <option value="$PROJECT_DIR$/src/js/storage.js" />
         <option value="$PROJECT_DIR$/src/js/shared.js" />
-        <option value="$PROJECT_DIR$/src/js/controllerEditNote.js" />
         <option value="$PROJECT_DIR$/src/js/controllerNewNote.js" />
+        <option value="$PROJECT_DIR$/src/js/controllerEditNote.js" />
         <option value="$PROJECT_DIR$/src/js/controllerIndex.js" />
       </list>
     </option>
@@ -527,12 +522,12 @@
       <workItem from="1496417250304" duration="27847000" />
       <workItem from="1496681041444" duration="7505000" />
       <workItem from="1496821005814" duration="14525000" />
-      <workItem from="1496862407076" duration="58165000" />
+      <workItem from="1496862407076" duration="60198000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="295011000" />
+    <option name="totallyTimeSpent" value="297044000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -554,7 +549,7 @@
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996634" sideWeight="0.4785047" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996634" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996634" sideWeight="0.4901599" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26150393" sideWeight="0.46432963" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26150393" sideWeight="0.46432963" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24922119" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22109988" sideWeight="0.45545173" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39955106" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -822,31 +817,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/handlebars.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="48" column="37" lean-forward="false" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
+        <state relative-caret-position="293">
+          <caret line="42" column="9" lean-forward="false" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.html">
+    <entry file="file://$PROJECT_DIR$/src/js/storage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="49" column="57" lean-forward="false" selection-start-line="49" selection-start-column="57" selection-end-line="49" selection-end-column="57" />
+        <state relative-caret-position="668">
+          <caret line="124" column="28" lean-forward="true" selection-start-line="124" selection-start-column="28" selection-end-line="124" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/shared.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+        <state relative-caret-position="287">
+          <caret line="24" column="17" lean-forward="false" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/controllerNewNote.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
+        <state relative-caret-position="240">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -856,27 +851,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/controllerEditNote.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="44" column="38" lean-forward="true" selection-start-line="43" selection-start-column="4" selection-end-line="44" selection-end-column="38" />
+        <state relative-caret-position="656">
+          <caret line="78" column="2" lean-forward="true" selection-start-line="78" selection-start-column="2" selection-end-line="78" selection-end-column="2" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/storage.js">
+    <entry file="file://$PROJECT_DIR$/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="124" column="28" lean-forward="true" selection-start-line="124" selection-start-column="28" selection-end-line="124" selection-end-column="28" />
+        <state relative-caret-position="304">
+          <caret line="23" column="32" lean-forward="false" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/controllerIndex.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="9" lean-forward="false" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
-          <folding />
+        <state relative-caret-position="492">
+          <caret line="67" column="4" lean-forward="false" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="4" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
