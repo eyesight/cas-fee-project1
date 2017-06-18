@@ -3,7 +3,7 @@
  * Created by claudia on 13.06.17.
  * Beinhaltet JS Code, welcher von mehreren Files benötigt wird.
  */
-
+//funktionen, wie styleswitch
 //Get the the data from the localStorage - all Notes, when nothing is in it, take the default notes form file "testnotes.js"
 function applyNoteData(){
     let notes = localStorage.getItem('notes');
@@ -53,7 +53,7 @@ function applySelectedNoteID(){
 function applyShowFinished(){
     let showFinished = sessionStorage.getItem('showFinished');
     //if there isn't clicked on show-finished-Btn, initial Item in sessionStore
-    if(!showFinished){
+    if(!showFinished) {
         sessionStorage.setItem('showFinished', '0');
     }
     return showFinished;

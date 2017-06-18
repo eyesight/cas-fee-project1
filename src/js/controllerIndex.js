@@ -8,8 +8,6 @@
 //TODO: Idiom: Namespace Folie S. 64 Abend 5 -> Aufruf von versch. Funktionen, schön gliedern
 //TODO: beim Klicken auf Button sollte die Page neu gerendert werden (nicht nur der erste Klick)
 //TODO: die DOME-Registrierungen sollten nicht mit funktionen vermischt werden.
-//TODO: Klasse bei Change-Style noch setzen (auswahl fällt immer auf colorful zurück)
-//TODO: window.location.replace() für edit, save und delete korrigieren, damit weiterleitung funktioniert
 //Immediately-invokedFunctionExpression (IIFE)
 ;(function(window, document) {
     "use strict";
@@ -26,33 +24,25 @@ function styleChanger(){
 function noteIsFinished(e){
     let notesData = parseNoteData();
     let selectedID = Number(e.currentTarget.id);
-    let finishBtnStatus = 0;
+    let finishBtnStatus = false;
     for(let i=0; i<notesData.length;i++){
         if(selectedID === notesData[i].id){
             finishBtnStatus = notesData[i].finished;
-            if(finishBtnStatus === 0){
-                finishBtnStatus = 1;
+            if(finishBtnStatus === false){
+                finishBtnStatus = true;
             }
             else {
-                finishBtnStatus = 0;
+                finishBtnStatus = false;
             }
             notesData[i].finished = finishBtnStatus;
         }
     }
     localStorage.setItem("notes", JSON.stringify(notesData));
+    console.log('finished');
     return selectedID;
-
 }
 //when dome is loaded
 window.onload = function () {
-    //Set variables for EventListeners
-    const body = document.querySelector('body');
-    const btnsToSort = document.querySelectorAll('#sortBtns li');
-    const btnShowFinished = document.querySelector('#showFinishedBtn');
-    const btnsIfFinish = document.querySelectorAll('.note__finish-wrapper');
-    const btnsEdit = document.querySelectorAll('.note__edit-wrapper');
-    const optionsStyle = document.querySelectorAll('.style');
-
     //start all Functions applying the storage
     applyNoteData();
     applyStyleData();
@@ -61,11 +51,19 @@ window.onload = function () {
     applyShowFinished();
     renderPage();
 
+    //Set variables for EventListeners
+    const body = document.querySelector('body');
+    const btnsToSort = document.querySelectorAll('#sortBtns li');
+    const btnShowFinished = document.querySelector('#showFinishedBtn');
+    const btnsIfFinish = document.querySelectorAll('.note__finish-wrapper');
+    const btnsEdit = document.querySelectorAll('.note__edit-wrapper');
+    const optionsStyle = document.querySelectorAll('.style');
+
     //set Style
     let actualStyle = applyStyleData();
     body.addEventListener('change', styleChanger);
     document.querySelector('body').className = actualStyle;
-    
+
     optionsStyle.forEach(function(e){
         if(e.value == actualStyle){
             e.selected = true;
@@ -111,25 +109,28 @@ window.onload = function () {
         let showFinished = applyShowFinished();
         let finishBtn = document.querySelector('#showFinishedBtn');
 
-        if (showFinished === 0) {
+        if (showFinished == 0) {
             sessionStorage.setItem('showFinished', '1');
         } else {
             sessionStorage.setItem('showFinished', '0');
         }
 
         if (finishBtn.classList.contains('active')) {
+            renderPage();
             return finishBtn.classList.remove('active');
+        }else{
+            renderPage();
+            return finishBtn.classList.add('active');
         }
-        renderPage();
-        return finishBtn.classList.add('active');
+
     }
-
+    //TODO: onlclick on HTML-Index ausprobieren
     //By click on finish-Button, start function "noteIsFinished"
-
     btnsIfFinish.forEach(function (el) {
         el.addEventListener('click', function (e) {
             noteIsFinished(e);
             renderPage();
+            e.preventDefault();
         });
     });
 
@@ -138,6 +139,7 @@ window.onload = function () {
         el.addEventListener('click', function (e) {
             setSelectedNoteID(e);
             window.location.replace("editNote.html");
+            e.preventDefault();
         });
     });
 };

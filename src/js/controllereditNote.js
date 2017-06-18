@@ -31,15 +31,15 @@ function getNoteToEdit(selectedNote){
 
 //when dome is loaded
 window.onload = function() {
+    //start all Functions appling storage
+    //applyNoteData();
+    //applySelectedNoteID();
+
     //Set variables for EventListeners
     const btnCancelNote = document.querySelector("#cancelBtn");
     const btnDeleteNote = document.querySelector("#deleteBtn");
     const btnEditNote = document.querySelector('#editBtn');
     const body = document.querySelector('body');
-
-    //start all Functions appling storage
-    applyNoteData();
-    applySelectedNoteID();
 
     //set the actual style on body
     body.className = applyStyleData();
@@ -54,16 +54,17 @@ window.onload = function() {
 
     //applying EventListener
     btnCancelNote.addEventListener('click', cancelNote);
-    btnDeleteNote.addEventListener('click', function(){
+    btnDeleteNote.addEventListener('click', function(e){
         let id = applySelectedNoteID();
         let notes = parseNoteData();
         let selectedNote = getNoteByID(id, notes);
 
         deleteNote(id, selectedNote, notes);
         window.location.replace("index.html");
+        e.preventDefault();
     });
 
-    btnEditNote.addEventListener('click', function () {
+    btnEditNote.addEventListener('click', function (e) {
 
         id = selectedNote.id;
         let title = document.getElementById("title").value;
@@ -72,15 +73,17 @@ window.onload = function() {
         let creatDate = selectedNote.creatDate;
         let finishDate = document.getElementById("fdate").value;
         let finished = selectedNote.finished;
-
         updateNote(allNotes, selectedNote, id, title, description, rating, creatDate, finishDate, finished);
-        router.navigateTo("index.html");
+        window.location.replace("index.html");
+        e.preventDefault();
     });
 };
 
+
 //by clicking on cancel-button go back to index.html
-function cancelNote(){
+function cancelNote(e){
     window.location.replace("index.html");
+    e.preventDefault();
 }
 
 }(window, document));

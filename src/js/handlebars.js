@@ -2,6 +2,7 @@
  * Created by claudia on 13.06.17.
  * all Handlebar-Helper-functions
  */
+
 Handlebars.registerHelper('ratingCounter', function(){
     let ratingNumber = Handlebars.escapeExpression(this.rating);
     let stars = "";
@@ -27,16 +28,6 @@ Handlebars.registerHelper('ratingCounter', function(){
     return new Handlebars.SafeString(
         stars
     );
-
-});
-
-Handlebars.registerHelper('buttonActive', function(){
-    let buttonstate = Handlebars.escapeExpression(this.finished);
-    let button = "";
-    if(buttonstate === "1" ){
-        return button = "active";
-    }
-    return button = "";
 });
 
 //Handebar-Render-Function
@@ -44,9 +35,7 @@ function renderPage(){
     let notesData = parseNoteData();
     //get sortBy from sessionStore by function applySortByBtn (from storage)
     let newSortBy = applySortByBtn();
-    //get showFinished-Status by function getFinished (from storage)
-    let showFinished = sessionStorage.getItem('showFinished');
-    showFinished = applyShowFinished();
+    let finihedStatus = applyShowFinished();
 
     let temp = document.querySelector('#noteTemplate').innerHTML;
 
@@ -66,10 +55,14 @@ function renderPage(){
             break;
     }
 
+    if(finihedStatus == 1){
+        notesData = showFinishNotes(notesData);
+        console.log(notesData);
+    }
+
     //render the Datas into the HTML-Container
     let generatedNote = compiledTemp(notesData);
     let noteswrap = document.querySelector('#notesContainer');
     noteswrap.innerHTML = generatedNote;
-
-    return noteswrap;
+    console.log('render');
 }

@@ -10,12 +10,9 @@
  **/
 //TODO: Der Store darf kein Zugriff auf den DOM haben. -> sicherstellen
 function addNewNote(title, description, rating, creatDate, finishDate, finished){
-    let notes = applyNoteData();
+    let notes = localStorage.getItem("notes");
     let newId = 1;
-    if (!notes){
-        localStorage.setItem("notes", JSON.stringify([]));
-        notes = localStorage.getItem("notes");
-    }
+
     notes = JSON.parse(notes);
     let idMax = Math.max.apply(null, notes.map(function(a){return a.id;}));
     (!idMax || idMax === '-Infinity') ? newId = 1 : newId = idMax+1;
@@ -72,7 +69,7 @@ function sortByImportance(sortedData){
 function showFinishNotes(finishedData){
     let indexOfNotes = [];
     for(let i = 0; i<finishedData.length;i++){
-        if(finishedData[i].finished === 0){
+        if(finishedData[i].finished == 0){
             finishedData.splice(i, 1);
         }
     }
