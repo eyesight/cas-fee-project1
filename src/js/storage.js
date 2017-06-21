@@ -76,15 +76,6 @@ function showFinishNotes(finishedData){
     return finishedData;
 }
 
-//Notes initialiser, add new notes
-//TODO: build a function to get better formatted dates and maybe a counter
-function formatFinishDate(finishDate){
-    //TODO: delete this DOME-OBJECT
-    finishDate = document.getElementById("fdate").value;
-    finishDate = moment(finishDate).format('LL');
-    return finishDate;
-}
-
 //Update the edited note -> replace the old note with the edited stuff
 function updateNote(notes, selectedNote, id, title, description, rating, creatDate, finishDate, finished){
     //get index of Object to remove it with splice
