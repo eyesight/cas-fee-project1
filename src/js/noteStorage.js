@@ -20,12 +20,11 @@ var noteStorage = (function() {
             'finishDate' : finishDate,
             'finished' : finished
         };
-        let addedNote = _updateNote(newNote);
+        let addedNote = _setNotesToStorage(newNote);
         return addedNote;
     }
 
-    function _updateNote(note){
-        notes.push(note);
+    function _setNotesToStorage(notes){
         return localStorage.setItem("notes", JSON.stringify(notes));
     }
 
@@ -40,21 +39,22 @@ var noteStorage = (function() {
         }
         return selectedNote;
     }
-
+    //TODO: evt. absteigende Funktion machen (importance ist momentan falsch)
     function _sortNotes(dataToSort, sortBy){
-        let sortedNotes = sortedData.sort(function(a,b){
-            return (a.sortBy > b.sortBy) ? 1 : ((b.sortBy > a.sortBy) ? -1 : 0);
+        let sortedNotes = dataToSort.sort(function(a,b){
+            return (a[sortBy] > b[sortBy]) ? 1 : ((b[sortBy] > a[sortBy]) ? -1 : 0);
         });
         return sortedNotes;
     }
 
-    function _showFinishNotes(notes){
+    function _showFinishNotes(notes, finishState){
         let indexOfNotes = [];
         for(let i = 0; i<notes.length;i++){
             if(notes[i].finished == 0){
                 notes.splice(i, 1);
             }
         }
+        console.log(notes);
         return notes;
     }
 
@@ -95,7 +95,7 @@ var noteStorage = (function() {
             }
         }
         notes.splice(indexOfNote, 1);
-        notes = _updateNote(notes);
+        notes = _setNotesToStorage(notes);
         return notes;
     }
 
@@ -115,7 +115,7 @@ var noteStorage = (function() {
         getNoteByID: _getNoteByID,
         sortNotes: _sortNotes,
         showFinishNotes: _showFinishNotes,
-        updateNote: _updateNote,
+        setNotesToStorage: _setNotesToStorage,
         editNote: _editNote,
         deleteNote: _deleteNote,
         parsedNotes: _parsedNotes,

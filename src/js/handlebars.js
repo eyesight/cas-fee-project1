@@ -1,90 +1,82 @@
 /**
- * Created by claudia on 13.06.17.
- * all Handlebar-Helper-functions
+ * Created by claudia on 20.06.17.
  */
 
-Handlebars.registerHelper('ratingCounter', function(){
-    let ratingNumber = Handlebars.escapeExpression(this.rating);
-    let stars = "";
-    switch(ratingNumber){
-        case "1":
-            stars = "★☆☆☆☆";
-            break;
-        case "2":
-            stars = "★★☆☆☆";
-            break;
-        case "3":
-            stars = "★★★☆☆";
-            break;
-        case "4":
-            stars = "★★★★☆";
-            break;
-        case "5":
-            stars = "★★★★★";
-            break;
-        default:
-            stars = "keine Priorität";
-    }
-    return new Handlebars.SafeString(
-        stars
-    );
-});
+;(function(noteApp) {
+    'use strict';
 
-Handlebars.registerHelper('FormatedDate', function(date, language){
-    moment.locale(language);
-    let momentDate = moment(date);
-    let today = moment().set({hour: 0, minute: 0, second: 0, millisecond: 0});
-    let days = moment(date, "LLLL");
-    let calendarDate = moment(date).calendar();
-    let dateDiff = momentDate.diff(today, 'days');
-    if(dateDiff>0){
-        return new Handlebars.SafeString('<span> Erledigen bis am <br>' + calendarDate + ' </span>');
-    } else if (dateDiff == 0){
-        return 'Heute erledigen';
-    } else{
-        return new Handlebars.SafeString('<span class="outdated"> Überfällig seit <br>' + calendarDate + ' </span>');
-    }
-});
+    noteApp.view = (function() {
+        function _setHandlebarsHelper() {
+            Handlebars.registerHelper('ratingCounter', function () {
+                let ratingNumber = Handlebars.escapeExpression(this.rating);
+                let stars = "";
+                switch (ratingNumber) {
+                    case "1":
+                        stars = "★☆☆☆☆";
+                        break;
+                    case "2":
+                        stars = "★★☆☆☆";
+                        break;
+                    case "3":
+                        stars = "★★★☆☆";
+                        break;
+                    case "4":
+                        stars = "★★★★☆";
+                        break;
+                    case "5":
+                        stars = "★★★★★";
+                        break;
+                    default:
+                        stars = "keine Priorität";
+                }
+                return new Handlebars.SafeString(
+                    stars
+                );
+            });
+            Handlebars.registerHelper('FormatedDate', function (date, language) {
+                moment.locale(language);
+                let momentDate = moment(date);
+                let today = moment().set({hour: 0, minute: 0, second: 0, millisecond: 0});
+                let days = moment(date, "LLLL");
+                let calendarDate = moment(date).calendar();
+                let dateDiff = momentDate.diff(today, 'days');
+                if (dateDiff > 0) {
+                    return new Handlebars.SafeString('<span> Erledigen bis am <br>' + calendarDate + ' </span>');
+                } else if (dateDiff == 0) {
+                    return 'Heute erledigen';
+                } else {
+                    return new Handlebars.SafeString('<span class="outdated"> Überfällig seit <br>' + calendarDate + ' </span>');
+                }
+            });
 
-Handlebars.registerHelper('FormatedDateSimple', function(date, language){
-    moment.locale(language);
-    let formatedDate = moment(date).format('L');
-    return formatedDate;
-});
+            Handlebars.registerHelper('FormatedDateSimple', function (date, language) {
+                moment.locale(language);
+                let formatedDate = moment(date).format('L');
+                return formatedDate;
+            });
+        }
 
-//Handebar-Render-Function
-function renderPage(){
-    let notesData = parseNoteData();
-    //get sortBy from sessionStore by function applySortByBtn (from storage)
-    let newSortBy = applySortByBtn();
-    let finihedStatus = applyShowFinished();
+        return {
+            setHandlebarsHelper: _setHandlebarsHelper
+        };
+    })(),
 
-    let temp = document.querySelector('#noteTemplate').innerHTML;
+    noteApp.render = (function() {
+        /*function _renderPage(notesData, sortbyBtn) {
+         //get sortBy from sessionStore by function applySortByBtn (from storage)
+         notesData = noteStorage.sortNotes(notesData, sortbyBtn);
 
-    let compiledTemp = Handlebars.compile(temp);
+         //let finihedStatus = applyShowFinished();
 
-    switch(newSortBy){
-        case 'finishDateBtn':
-            notesData = sortByFinishDate(notesData);
-            break;
-        case 'createdDateBtn':
-            notesData = sortByCreatedDate(notesData);
-            break;
-        case 'importanceBtn':
-            notesData = sortByImportance(notesData);
-            break;
-        default:
-            break;
-    }
+         let temp = document.querySelector('#noteTemplate').innerHTML;
+         let compiledTemp = Handlebars.compile(temp);
 
-    if(finihedStatus == 1){
-        notesData = showFinishNotes(notesData);
-        console.log(notesData);
-    }
 
-    //render the Datas into the HTML-Container
-    let generatedNote = compiledTemp(notesData);
-    let noteswrap = document.querySelector('#notesContainer');
-    noteswrap.innerHTML = generatedNote;
-    console.log('render');
-}
+         //render the Datas into the HTML-Container
+         let generatedNote = compiledTemp(notesData);
+         let noteswrap = document.querySelector('#notesContainer');
+         noteswrap.innerHTML = generatedNote;
+         console.log('render');
+         }*/
+    })()
+}(window.noteApp = window.noteApp || {}));
