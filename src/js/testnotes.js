@@ -1,6 +1,6 @@
 "use strict";
 //Some Test-Notes (to prepar for implement the JSON-Objects)
-var defaultnotes = [
+let defaultnotes = [
         {
             "id": 0,
             "title": "Abwaschen",

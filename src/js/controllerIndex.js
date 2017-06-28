@@ -15,7 +15,7 @@
 
     //Stylechanger: set in local-Storage
     function styleChanger(){
-        let actualStyle = sharedFunctions.sessionValue('styleClassName', 'colorful');
+        let actualStyle = shared.sessionValue('styleClassName', 'colorful');
         actualStyle = document.querySelector('#stylesAll').value;
         sessionStorage.setItem('styleClassName', actualStyle);
         document.querySelector('body').className = actualStyle;
@@ -67,13 +67,13 @@
 
 
     window.onload = function () {
-        sharedFunctions.initNoteData();
-        sharedFunctions.sessionValue('styleClassName', 'colorful');
-        sharedFunctions.sessionValue('sortby', 'finishDate');
-        sharedFunctions.sessionValue('showFinished', false);
+        shared.initNoteData();
+        shared.sessionValue('styleClassName', 'colorful');
+        shared.sessionValue('sortby', 'finishDate');
+        shared.sessionValue('showFinished', false);
         sessionStorage.removeItem('selectedID');
 
-        noteApp.view.setHandlebarsHelper();
+        view.setHandlebarsHelper();
 
         //Set variables for EventListeners
         const body = document.querySelector('body');
@@ -93,7 +93,7 @@
         render(template, notesWrapper, notesData, sortbyValue);
 
         //set Style
-        let actualStyle = sharedFunctions.sessionValue('styleClassName', 'colorful');
+        let actualStyle = shared.sessionValue('styleClassName', 'colorful');
         body.addEventListener('change', styleChanger);
         document.querySelector('body').className = actualStyle;
 
@@ -119,7 +119,7 @@
         //show just finished Notes
         //TODO: vereinfachen
         btnShowFinished.addEventListener('click', function(e){
-            let showFinishedNotes = sharedFunctions.sessionValue('showFinished', false);
+            let showFinishedNotes = shared.sessionValue('showFinished', false);
             console.log(showFinishedNotes);
             if(showFinishedNotes == 'false'){
                 console.log(showFinishedNotes);

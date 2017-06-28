@@ -38,7 +38,7 @@
 
     //when dome is loaded
     window.onload = function () {
-        sharedFunctions.initNoteData();
+        shared.initNoteData();
         //Set variables for EventListeners
         const btnSubmit = document.querySelector("#submitBtn");
         const btnCancelNote = document.querySelector("#cancelBtn");
@@ -53,7 +53,7 @@
         let validationText = "";
 
         //set the actual style on body
-        body.className = sharedFunctions.sessionValue('styleClassName', 'colorful');
+        body.className = shared.sessionValue('styleClassName', 'colorful');
 
         if(selNoteId){
             //all Data of selected Note in form

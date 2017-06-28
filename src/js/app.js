@@ -1,7 +1,7 @@
 /**
  * Created by claudia on 24.06.17.
  */
-sharedFunctions = (function(){
+shared = (function(){
     "use strict";
     function _initNoteData(){
         let notes = localStorage.getItem('notes');
@@ -25,4 +25,4 @@ sharedFunctions = (function(){
         sessionValue: _sessionValue,
         initNoteData: _initNoteData
     };
-}());
+}() || {});
