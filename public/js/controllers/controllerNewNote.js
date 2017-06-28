@@ -38,6 +38,7 @@
 
     //when dome is loaded
     window.onload = function () {
+        const client = window.services.restClient;
         shared.initNoteData();
         //Set variables for EventListeners
         const btnSubmit = document.querySelector("#submitBtn");
@@ -64,7 +65,6 @@
 
         //EventListener
         btnSubmit.addEventListener('click', function(e){
-            console.log(selNoteId);
 
             let title = document.getElementById("title").value;
             let description = document.getElementById("description").value;
@@ -87,12 +87,17 @@
                 notesObject.finished = false;
             }
 
-            console.log(notesObject);
 
             if(validationText !="" || validationText != " "){
                 e.preventDefault();
-                (selNoteId) ? noteStorage.editNote(notesObject, allNotes) : noteStorage.addNewNote(notesObject, allNotes);
-                window.location.replace('index.html');
+                client.createNote(notesObject).then(x => {
+                    debugger;
+                    window.location.replace('index.html');
+                });
+
+
+             //   (selNoteId) ? noteStorage.editNote(notesObject, allNotes) : noteStorage.addNewNote(notesObject, allNotes)
+
             } else{
                 alert('Bitte folgende Felder ausfüllen:'+ validationText);
             }

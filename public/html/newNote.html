@@ -15,7 +15,7 @@
 <div class="wrapper">
     <header class="head">
         <div class="head__title-container head--no-padding">
-            <h1 class="head__title">edit a {{ Note }}</h1>
+            <h1 class="head__title">add a {{ Note }}</h1>
         </div>
     </header>
     <div class="form-wrap content-wrap">
@@ -42,20 +42,21 @@
                 <label for="fdate">Finishing Date</label>
                 <input type="date" id="fdate" name="bday" required autofocus/>
                 <div class="form__btn">
-                    <button id="editBtn" class="btn form__btn"><a class="btn--link">save</a></button>
+                    <button id="submitBtn" method="post" class="btn form__btn" type="submit" value="Submit"><a class="btn--link">submit</a></button>
                     <button id="cancelBtn" class="btn form__btn"><a class="btn--link">cancel</a></button>
-                    <button id="deleteBtn" class="btn form__btn"><a class="btn--link">delete</a></button>
                 </div>
         </form>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
-<script src="js/libs/moment.js"></script>
-
-<script src="js/testnotes.js"></script>
-<script src="js/storage.js"></script>
-<script src="js/shared.js"></script>
-<script src="js/controllerEditNote.js"></script>
+<script src="../js/libs/moment-with-locales.js"></script>
+<script src="../js/utils/ajaxUtil.js"></script>
+<script src="../js/services/restClient.js"></script>
+<script src="../js/services/testnotes.js"></script>
+<script src="../js/services/noteStorage.js"></script>
+<script src="../js/utils/handlebars.js"></script>
+<script src="../js/utils/app.js"></script>
+<script src="../js/controllers/controllerNewNote.js"></script>
 </body>
 </html>

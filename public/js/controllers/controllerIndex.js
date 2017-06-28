@@ -67,6 +67,7 @@
 
 
     window.onload = function () {
+        const client = window.services.restClient;
         shared.initNoteData();
         shared.sessionValue('styleClassName', 'colorful');
         shared.sessionValue('sortby', 'finishDate');

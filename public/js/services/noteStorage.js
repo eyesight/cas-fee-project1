@@ -1,15 +1,16 @@
 /**
  * Created by claudia on 20.06.17.
  */
-
+const client = window.services.restClient;
 const noteStorage = (function() {
     'use strict';
     //have notes as global object
     //let allNotes = localStorage.getItem("notes");
 
     function _addNewNote(newNote, allNotes){
-        allNotes.push(newNote);
-        _updateNotesInStorage(allNotes);
+       // allNotes.push(newNote);
+        //_updateNotesInStorage(allNotes);
+        client.createNote(newNote);
     }
 
     function _updateNotesInStorage(notes){
@@ -87,6 +88,11 @@ const noteStorage = (function() {
         return notesParsed;
     }
 
+    function storageGetAll(){
+        return client.ajax("GET","/notes/",undefined);
+
+    }
+
     return {
         addNewNote: _addNewNote,
         getNoteByID: _getNoteByID,
@@ -96,6 +102,7 @@ const noteStorage = (function() {
         editNote: _editNote,
         deleteNote: _deleteNote,
         parsedNotes: _parsedNotes,
-        creatID: _creatID
+        creatID: _creatID,
+        storageGetAll:storageGetAll
     };
 }() || {});
