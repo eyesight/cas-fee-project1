@@ -3,21 +3,13 @@
  */
 const store = require("../services/notesStore.js");
 
-module.exports.getNotes = function(req, res)
-{
+module.exports.getNotes = function(req, res) {
     store.all(req, function (err, notes) {
         res.json(notes || {});
     })
 };
 
-module.exports.getNotesJSON = function(req, res, next) {
-    store.all(function(err, notes) {
-        res.json(notes);
-    });
-};
-
-module.exports.creatNote = function(req, res)
-{
+    module.exports.creatNote = function(req, res) {
     let note = store.add(req.body.title, req.body.description, req.body.rating, req.body.finishDate,  function(err, note) {
         res.json(note);
     });
@@ -30,13 +22,38 @@ module.exports.showNotes = function(req, res){
     });
 };
 
-module.exports.deleteNote =  function (req, res)
-{
+module.exports.deleteNote =  function (req, res) {
     store.delete(  req.params.id, function(err, note) {
         res.json(note);
     });
 };
 
+module.exports.updateNote = function(req, res) {
+    let note = store.update(req.params._id, req.body.title, req.body.description, req.body.rating, req.body.finishDate, req.body.finished,  function(err, note) {
+        res.json(note);
+    });
+};
+
+module.exports.updateNoteFin = function(req, res) {
+    let note = store.updateFinished(req.body._id, req.body.finished, function(err, note) {
+        res.json(note);
+    });
+};
+
+
+/*module.exports.updateNote = function(req, res, next) {
+    store.updateFinished(req.params.id, function(err, note) {
+        note.title = req.body.title;
+        note.description = req.body.description;
+        note.finishDate = req.body.finishDate;
+        note.importance = req.body.importance;
+        note.finished = req.body.finished ? true : false;
+        store.putNote(note);
+    });
+    res.redirect("/");
+};*/
+
+/*
 module.exports.updateNote = function(req, res)
 {
     if (req.body.finished !== undefined){
@@ -45,9 +62,8 @@ module.exports.updateNote = function(req, res)
         });
     }
     else{
-
         let note = store.update(req.params.id,req.body.title, req.body.description, req.body.rating,req.body.finishDate,  function(err, note) {
             res.json(note);
         });
     }
-};
+};*/

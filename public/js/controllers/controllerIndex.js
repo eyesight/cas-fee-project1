@@ -1,29 +1,29 @@
 /**
  * Created by claudia on 20.06.17.
  */
-;(function(window, document) {
+;(function (window, document) {
     "use strict";
     const client = window.services.restClient;
 
-    function render(template, noteswrap, sortby){
-        //get sortBy from sessionStore by function applySortByBtn (from storage)
+    function render(template, noteswrap, sortby) {
         const compiledTemp = Handlebars.compile(template);
-        client.getNotes("/notes").done(function(notes){
+        client.getNotes("/notes").done(function (notes) {
             notes = noteStorage.sortNotes(notes, sortby);
             let generatedNote = compiledTemp(notes);
             noteswrap.innerHTML = generatedNote;
+            console.log(notes);
         });
     }
 
     //Stylechanger: set in local-Storage
-    function styleChanger(){
+    function styleChanger() {
         let actualStyle = shared.sessionValue('styleClassName', 'colorful');
         actualStyle = document.querySelector('#stylesAll').value;
         sessionStorage.setItem('styleClassName', actualStyle);
         document.querySelector('body').className = actualStyle;
     }
 
-    function getSelectedIDRemoveLetters(id){
+    function getSelectedIDRemoveLetters(id) {
         id = Number(id.match(/\d+/g));
         return id;
     }
@@ -46,30 +46,7 @@
         return newSortBy;
     }
 
-    //Function to mark finished-Buttons as finished and store it note in local-store
-    function noteSetToFinish(allNotes, selectedID, key){
-        let finishBtnStatus = false;
-        for(let i=0; i<allNotes.length;i++){
-            if(selectedID == allNotes[i].id){
-                finishBtnStatus = allNotes[i][key];
-                console.log(finishBtnStatus);
-                if(finishBtnStatus === false){
-                    finishBtnStatus = true;
-                }
-                else {
-                    finishBtnStatus = false;
-                }
-                allNotes[i][key] = finishBtnStatus;
-            }
-        }
-        console.log(allNotes);
-        noteStorage.updateNotesInStorage(allNotes);
-    }
-
-
-
     window.onload = function () {
-
         shared.initNoteData();
         shared.sessionValue('styleClassName', 'colorful');
         shared.sessionValue('sortby', 'finishDate');
@@ -87,7 +64,6 @@
         let notesObject = localStorage.getItem("notes");
         let notesData = JSON.parse(notesObject);
         let sortbyValue = sessionStorage.getItem('sortby');
-        console.log('sortby'+sortbyValue);
 
         //variables to render page
         const template = document.querySelector('#noteTemplate').innerHTML;
@@ -101,18 +77,18 @@
         document.querySelector('body').className = actualStyle;
 
 
-        optionsStyle.forEach(function(e){
-            if(e.value == actualStyle){
+        optionsStyle.forEach(function (e) {
+            if (e.value == actualStyle) {
                 e.selected = true;
             }
         });
 
-        btnsToSort.forEach(function(e) {
+        btnsToSort.forEach(function (e) {
             //set class "active" on sort-link by data from session-store
             if (e.id === sortbyValue) {
                 e.classList.add("active");
             }
-            e.addEventListener('click', function(el) {
+            e.addEventListener('click', function (el) {
                 el.preventDefault();
                 sortbyValue = AddActiveByBtn(btnsToSort, el);
                 render(template, notesWrapper, sortbyValue);
@@ -121,16 +97,16 @@
 
         //show just finished Notes
         //TODO: vereinfachen
-        btnShowFinished.addEventListener('click', function(e){
+        btnShowFinished.addEventListener('click', function (e) {
             let showFinishedNotes = shared.sessionValue('showFinished', false);
             console.log(showFinishedNotes);
-            if(showFinishedNotes == 'false'){
+            if (showFinishedNotes == 'false') {
                 console.log(showFinishedNotes);
                 sessionStorage.setItem('showFinished', true);
                 btnShowFinished.classList.add('active');
                 notesData = noteStorage.showFinishNotes(notesData);
                 render(template, notesWrapper, sortbyValue);
-            }else{
+            } else {
                 sessionStorage.setItem('showFinished', false);
                 btnShowFinished.classList.remove('active');
                 notesData = JSON.parse(notesObject);
@@ -140,19 +116,27 @@
 
         notesWrapper.addEventListener("click", function (el) {
             //By click on finish-Button, update Note as finished in database
-            if(el.target.classList.contains('note__btn-finish')){
-                let selectedID = getSelectedIDRemoveLetters(el.target.id);
-                noteSetToFinish(notesData, selectedID, 'finished');
-                render(template, notesWrapper, sortbyValue);
-            }else if(el.target.classList.contains('note__btn-edit')) {
+            if (el.target.classList.contains('note__btn-finish')) {
+                client.getNote(el.target.id).done(note => {
+                    //TODO: funktion machen für setToFinished
+                    let noteID = note._id;
+                    if (note.finished) {
+                        note.finished = false;
+                    } else {
+                        note.finished = true;
+                    }
+                    client.updateNote(noteID, note).done(notes => {
+                        render(template, notesWrapper, sortbyValue);
+                    });
+                });
+            } else if (el.target.classList.contains('note__btn-edit')) {
                 //By click on edit-Btn, set ID in session Store, switch page
-                let selectedID = getSelectedIDRemoveLetters(el.target.id);
+                let selectedID = el.target.id;
+                console.log(selectedID);
                 sessionStorage.setItem('selectedID', selectedID);
                 window.location.replace("newNote.html");
-                el.preventDefault();
-            }else{
+            } else {
                 console.log(false);
-                return;
             }
         });
     }

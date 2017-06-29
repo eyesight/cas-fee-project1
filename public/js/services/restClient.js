@@ -5,27 +5,39 @@
 
     const ajaxUtil = window.util.ajax;
 
-    function createNote(note) {
+    function _createNote(note) {
         return ajaxUtil.ajax("POST", "/notes", note);
     }
 
 
-    function getNotes() {
+    function _getNotes() {
         return ajaxUtil.ajax("GET", "/notes", undefined);
     }
 
-    function getNote(id) {
+    function _getNote(id) {
         return ajaxUtil.ajax("GET", `/notes/${id}`, undefined);
     }
 
-    function deleteNote(id) {
+    function _deleteNote(id) {
         return ajaxUtil.ajax("DELETE", `/notes/${id}`, undefined);
     }
 
+    function _updateNote(id, note) {
+        return ajaxUtil.ajax("POST",`/notes/${id}`, note);
+
+    }
+
+    function _updateNoteFin(id, note) {
+        return ajaxUtil.ajax("POST",`/notes/${id}`, note);
+
+    }
+
     services.restClient = {
-        createNote: createNote,
-        getNotes: getNotes,
-        getNote: getNote,
-        deleteNote: deleteNote
+        createNote: _createNote,
+        getNotes: _getNotes,
+        getNote: _getNote,
+        deleteNote: _deleteNote,
+        updateNote: _updateNote,
+        updateNoteFin: _updateNoteFin
     };
 }(window.services = window.services || { }, jQuery));

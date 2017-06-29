@@ -7,7 +7,7 @@ const db = new Datastore({ filename: './data/notesData.db', autoload: true });
 
 
 class Note {
-    constructor(title, description, rating, finishDate) {
+    constructor(title, description, rating, finishDate, finished) {
         //this.id = 0;
         this.title = title;
         this.description = description;
@@ -15,10 +15,11 @@ class Note {
         this.finishDate = finishDate;
         this.finished = false;
         this.creatDate = new Date();
+        this.finished = finished;
     }
 }
 
-function publicAddNote(title, description, rating, finishDate, callback)
+function _publicAddNote(title, description, rating, finishDate, callback)
 {
     let note = new Note(title, description, rating, finishDate);
     db.insert(note, function(err, newDoc){
@@ -29,38 +30,34 @@ function publicAddNote(title, description, rating, finishDate, callback)
     console.log('add2' + note);
 }
 
-function publicRemoveNote(id,  callback) {
+function _publicRemoveNote(id, callback) {
     db.update({_id: id}, {$set: {"state": "DELETED"}}, {}, function (err, count) {
-        publicGetNote( callback);
+        _publicGetNote( callback);
     });
 }
 
-function publicUpdateNote(id, title, description, rating, finishDate,  callback) {
-    let note = new Note(title,description,rating,finishDate);
-
-    db.update({_id: id},note, {}, function (err, doc) {
-        if (callback) {
-            callback(err, doc);
-        }
+function _publicUpdateNote(id, title, description, rating, finishDate, finished, callback) {
+    let note = new Note(title,description,rating,finishDate, finished);
+    db.update({_id: id}, note, {}, function (err, doc) {
+        _publicGetNote(id, callback);
     });
 }
 
-function publicUpdateFinishedNote(id, finished) {
-
+function _publicUpdateFinishedNote(id, finished, callback) {
     db.update({_id: id}, { $set: { finished: finished } }, {}, function (err, doc) {
-        // publicNoteGet( callback);
+          _publicGetNote(id, callback);
 
     });
 }
 
-function publicGetNote(id, callback)
+function _publicGetNote(id, callback)
 {
     db.findOne({ _id: id }, function (err, doc) {
         callback( err, doc);
     });
 }
 
-function publicAll(notes, callback)
+function _publicAll(notes, callback)
 {
     db.find({}, function (err, notes) {
         callback( err, notes);
@@ -68,9 +65,10 @@ function publicAll(notes, callback)
 }
 
 module.exports = {
-    add : publicAddNote,
-    delete : publicRemoveNote,
-    update : publicUpdateNote,
-    updateFinished : publicUpdateFinishedNote,
-    get : publicGetNote,
-    all : publicAll};
+    add : _publicAddNote,
+    delete : _publicRemoveNote,
+    update : _publicUpdateNote,
+    updateFinished : _publicUpdateFinishedNote,
+    get : _publicGetNote,
+    all : _publicAll
+};

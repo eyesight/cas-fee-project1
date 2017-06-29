@@ -14,27 +14,30 @@
     }
 
     //get the selected Note to the form to edit
-    function getNoteToEdit(selectedNoteID, allNotes){
-        let selectedNote = noteStorage.getNoteByID(selectedNoteID, allNotes);
-        //set the variables
-        let stars = document.querySelectorAll('input[name="rating"]');
-        let title = selectedNote.title;
-        let description = selectedNote.description;
-        let rating = selectedNote.rating;
-        let creatDate = selectedNote.creatDate;
-        let finishDate = selectedNote.finishDate;
-        let finished = selectedNote.finished;
-        let id = selectedNote.id;
+    function getNoteToEdit(selectedNoteID){
+        client.getNote(selectedNoteID).done(function (note) {
+            //set the variables
+            let stars = document.querySelectorAll('input[name="rating"]');
+            let title = note.title;
+            let description = note.description;
+            let rating = note.rating;
+            let creatDate = note.creatDate;
+            let finishDate = note.finishDate;
+            let finished = note.finished;
+            let id = note._id;
 
-        //fill the form with value of selected Note
-        for(let i = 0; i < stars.length; i++) {
-            if(stars[i].value == rating) {
-                stars[i].checked = true;
+            //fill the form with value of selected Note
+            for(let i = 0; i < stars.length; i++) {
+                if(stars[i].value == rating) {
+                    stars[i].checked = true;
+                }
             }
-        }
-        document.getElementById("title").value = title;
-        document.getElementById("description").value = description;
-        document.getElementById("fdate").value = finishDate;
+
+            document.getElementById("title").value = title;
+            document.getElementById("description").value = description;
+            document.getElementById("fdate").value = finishDate;
+        });
+
     }
 
     //when dome is loaded
@@ -58,9 +61,9 @@
         body.className = shared.sessionValue('styleClassName', 'colorful');
 
         if(selNoteId){
+            console.log(selNoteId);
             //all Data of selected Note in form
-            getNoteToEdit(selNoteId, allNotes);
-            notesObject = noteStorage.getNoteByID(selNoteId, allNotes);
+            getNoteToEdit(selNoteId);
         }
 
 
@@ -90,17 +93,22 @@
 
 
             if(validationText !="" || validationText != " "){
-                e.preventDefault();
-                client.createNote(notesObject).then(x => {
+                e.preventDefault(notesObject);
+
+                console.log(notesObject);
+                /*client.createNote(notesObject).then( element => {
                     debugger;
                     window.location.replace('index.html');
-                });
+                });*/
 
+                //(selNoteId) ?
+                    client.updateNote(selNoteId, notesObject).done(note => {
+                        console.log('render' + note);
+                    });
 
-             //   (selNoteId) ? noteStorage.editNote(notesObject, allNotes) : noteStorage.addNewNote(notesObject, allNotes)
+            /*} else{
+                alert('Bitte folgende Felder ausfüllen:'+ validationText);*/
 
-            } else{
-                alert('Bitte folgende Felder ausfüllen:'+ validationText);
             }
         });
 

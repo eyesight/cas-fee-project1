@@ -7,9 +7,7 @@ const noteStorage = (function() {
     //have notes as global object
     //let allNotes = localStorage.getItem("notes");
 
-    function _addNewNote(newNote, allNotes){
-       // allNotes.push(newNote);
-        //_updateNotesInStorage(allNotes);
+    function _addNewNote(newNote){
         client.createNote(newNote);
     }
 
@@ -19,7 +17,7 @@ const noteStorage = (function() {
     }
 
     //get all the Data form the selection Note by the selected ID
-    function _getNoteByID(id, allNotes){
+    /*function _getNoteByID(id, allNotes){
         id = Number(id);
         let selectedNote={};
         for(let i = 0; i<allNotes.length; i++){
@@ -28,7 +26,7 @@ const noteStorage = (function() {
             }
         }
         return selectedNote;
-    }
+    }*/
     //TODO: evt. absteigende Funktion machen (importance ist momentan falsch)
     function _sortNotes(dataToSort, sortBy){
         return dataToSort.sort(function(a, b){
@@ -95,7 +93,7 @@ const noteStorage = (function() {
 
     return {
         addNewNote: _addNewNote,
-        getNoteByID: _getNoteByID,
+        //getNoteByID: _getNoteByID,
         sortNotes: _sortNotes,
         showFinishNotes: _showFinishNotes,
         updateNotesInStorage: _updateNotesInStorage,
