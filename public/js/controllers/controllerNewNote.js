@@ -5,6 +5,7 @@
 //Immediately-invokedFunctionExpression (IIFE)
 ;(function(window, document) {
     "use strict";
+    const client = window.services.restClient;
 
     //by clicking on cancel-button go back to index.html
     function cancelNote(e){
@@ -38,7 +39,7 @@
 
     //when dome is loaded
     window.onload = function () {
-        const client = window.services.restClient;
+
         shared.initNoteData();
         //Set variables for EventListeners
         const btnSubmit = document.querySelector("#submitBtn");

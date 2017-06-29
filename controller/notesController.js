@@ -10,6 +10,12 @@ module.exports.getNotes = function(req, res)
     })
 };
 
+module.exports.getNotesJSON = function(req, res, next) {
+    store.all(function(err, notes) {
+        res.json(notes);
+    });
+};
+
 module.exports.creatNote = function(req, res)
 {
     let note = store.add(req.body.title, req.body.description, req.body.rating, req.body.finishDate,  function(err, note) {

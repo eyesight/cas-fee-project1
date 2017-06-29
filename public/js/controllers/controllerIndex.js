@@ -3,14 +3,16 @@
  */
 ;(function(window, document) {
     "use strict";
+    const client = window.services.restClient;
 
-    function render(template, noteswrap, objData, sortby){
+    function render(template, noteswrap, sortby){
         //get sortBy from sessionStore by function applySortByBtn (from storage)
-        objData = noteStorage.sortNotes(objData, sortby);
-
         const compiledTemp = Handlebars.compile(template);
-        let generatedNote = compiledTemp(objData);
-        noteswrap.innerHTML = generatedNote;
+        client.getNotes("/notes").done(function(notes){
+            notes = noteStorage.sortNotes(notes, sortby);
+            let generatedNote = compiledTemp(notes);
+            noteswrap.innerHTML = generatedNote;
+        });
     }
 
     //Stylechanger: set in local-Storage
@@ -67,7 +69,7 @@
 
 
     window.onload = function () {
-        const client = window.services.restClient;
+
         shared.initNoteData();
         shared.sessionValue('styleClassName', 'colorful');
         shared.sessionValue('sortby', 'finishDate');
@@ -91,7 +93,7 @@
         const template = document.querySelector('#noteTemplate').innerHTML;
         const notesWrapper = document.querySelector('#notesContainer');
 
-        render(template, notesWrapper, notesData, sortbyValue);
+        render(template, notesWrapper, sortbyValue);
 
         //set Style
         let actualStyle = shared.sessionValue('styleClassName', 'colorful');
@@ -113,7 +115,7 @@
             e.addEventListener('click', function(el) {
                 el.preventDefault();
                 sortbyValue = AddActiveByBtn(btnsToSort, el);
-                render(template, notesWrapper, notesData, sortbyValue);
+                render(template, notesWrapper, sortbyValue);
             });
         });
 
@@ -127,12 +129,12 @@
                 sessionStorage.setItem('showFinished', true);
                 btnShowFinished.classList.add('active');
                 notesData = noteStorage.showFinishNotes(notesData);
-                render(template, notesWrapper, notesData, sortbyValue);
+                render(template, notesWrapper, sortbyValue);
             }else{
                 sessionStorage.setItem('showFinished', false);
                 btnShowFinished.classList.remove('active');
                 notesData = JSON.parse(notesObject);
-                render(template, notesWrapper, notesData, sortbyValue);
+                render(template, notesWrapper, sortbyValue);
             }
         });
 
@@ -141,7 +143,7 @@
             if(el.target.classList.contains('note__btn-finish')){
                 let selectedID = getSelectedIDRemoveLetters(el.target.id);
                 noteSetToFinish(notesData, selectedID, 'finished');
-                render(template, notesWrapper, notesData, sortbyValue);
+                render(template, notesWrapper, sortbyValue);
             }else if(el.target.classList.contains('note__btn-edit')) {
                 //By click on edit-Btn, set ID in session Store, switch page
                 let selectedID = getSelectedIDRemoveLetters(el.target.id);

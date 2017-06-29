@@ -4,6 +4,7 @@
 shared = (function(){
     "use strict";
     function _initNoteData(){
+
         let notes = localStorage.getItem('notes');
         //if no notes exist, set new Object notes
         if(!notes){

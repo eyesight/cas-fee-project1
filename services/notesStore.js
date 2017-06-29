@@ -8,7 +8,6 @@ const db = new Datastore({ filename: './data/notesData.db', autoload: true });
 
 class Note {
     constructor(title, description, rating, finishDate) {
-        // id-function
         //this.id = 0;
         this.title = title;
         this.description = description;
@@ -68,4 +67,10 @@ function publicAll(notes, callback)
     });
 }
 
-module.exports = {add : publicAddNote, delete : publicRemoveNote, update : publicUpdateNote, updateFinished : publicUpdateFinishedNote, get : publicGetNote, all : publicAll};
+module.exports = {
+    add : publicAddNote,
+    delete : publicRemoveNote,
+    update : publicUpdateNote,
+    updateFinished : publicUpdateFinishedNote,
+    get : publicGetNote,
+    all : publicAll};
