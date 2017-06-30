@@ -27,7 +27,6 @@ function _publicAddNote(title, description, rating, finishDate, callback)
             callback(err, newDoc);
         }
     });
-    console.log('add2' + note);
 }
 
 function _publicRemoveNote(id, callback) {

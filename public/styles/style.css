@@ -312,6 +312,7 @@ h2{
     -ms-flex-pack: distribute;
     justify-content: space-around;
     -webkit-justify-content: space-around;
+    flex-flow: row wrap;
     margin:0 20px;
     border-radius:10px;
 
@@ -337,10 +338,22 @@ h2{
     text-align: center;
 }
 
+.note__close{
+    flex: 1 100%;
+    text-align: right;
+    align-self: flex-end;
+}
+
+.note__container .note__btn-delete{
+    width: 15%;
+    background-color: white;
+    color: black;
+    text-align: right;
+}
+
 /**
  * footer
  */
-
 
 .footer{
     position:relative;

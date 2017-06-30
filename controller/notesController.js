@@ -29,41 +29,13 @@ module.exports.deleteNote =  function (req, res) {
 };
 
 module.exports.updateNote = function(req, res) {
-    let note = store.update(req.params._id, req.body.title, req.body.description, req.body.rating, req.body.finishDate, req.body.finished,  function(err, note) {
+    let note = store.update(req.params.id, req.body.title, req.body.description, req.body.rating, req.body.finishDate, req.body.finished,  function(err, note) {
         res.json(note);
     });
 };
 
 module.exports.updateNoteFin = function(req, res) {
-    let note = store.updateFinished(req.body._id, req.body.finished, function(err, note) {
+    let note = store.updateFinished(req.params.id, req.body.finished, function(err, note) {
         res.json(note);
     });
 };
-
-
-/*module.exports.updateNote = function(req, res, next) {
-    store.updateFinished(req.params.id, function(err, note) {
-        note.title = req.body.title;
-        note.description = req.body.description;
-        note.finishDate = req.body.finishDate;
-        note.importance = req.body.importance;
-        note.finished = req.body.finished ? true : false;
-        store.putNote(note);
-    });
-    res.redirect("/");
-};*/
-
-/*
-module.exports.updateNote = function(req, res)
-{
-    if (req.body.finished !== undefined){
-        let note = store.updateFinished(req.params.id, req.body.finished , function(err, note) {
-            res.json(note);
-        });
-    }
-    else{
-        let note = store.update(req.params.id,req.body.title, req.body.description, req.body.rating,req.body.finishDate,  function(err, note) {
-            res.json(note);
-        });
-    }
-};*/

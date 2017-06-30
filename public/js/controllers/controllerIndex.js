@@ -135,7 +135,11 @@
                 console.log(selectedID);
                 sessionStorage.setItem('selectedID', selectedID);
                 window.location.replace("newNote.html");
-            } else {
+            } else if(el.target.classList.contains('note__btn-delete')){
+                //TODO: deleteNote-Funktion in notesStore umbauen und hier einsetzen
+                console.log(el.target.id);
+            }
+            else {
                 console.log(false);
             }
         });

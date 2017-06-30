@@ -4,8 +4,6 @@
 const client = window.services.restClient;
 const noteStorage = (function() {
     'use strict';
-    //have notes as global object
-    //let allNotes = localStorage.getItem("notes");
 
     function _addNewNote(newNote){
         client.createNote(newNote);
@@ -16,17 +14,6 @@ const noteStorage = (function() {
         return notes;
     }
 
-    //get all the Data form the selection Note by the selected ID
-    /*function _getNoteByID(id, allNotes){
-        id = Number(id);
-        let selectedNote={};
-        for(let i = 0; i<allNotes.length; i++){
-            if(id == allNotes[i].id){
-                selectedNote = allNotes[i];
-            }
-        }
-        return selectedNote;
-    }*/
     //TODO: evt. absteigende Funktion machen (importance ist momentan falsch)
     function _sortNotes(dataToSort, sortBy){
         return dataToSort.sort(function(a, b){

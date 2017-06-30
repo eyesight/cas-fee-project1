@@ -21,14 +21,14 @@
     function _deleteNote(id) {
         return ajaxUtil.ajax("DELETE", `/notes/${id}`, undefined);
     }
-
+    //TODO: Update should be with Put -> check!
     function _updateNote(id, note) {
         return ajaxUtil.ajax("POST",`/notes/${id}`, note);
 
     }
 
-    function _updateNoteFin(id, note) {
-        return ajaxUtil.ajax("POST",`/notes/${id}`, note);
+    function _updateNoteFinish(id, note) {
+        return ajaxUtil.ajax("PUT",`/notes/${id}`, note);
 
     }
 
@@ -38,6 +38,6 @@
         getNote: _getNote,
         deleteNote: _deleteNote,
         updateNote: _updateNote,
-        updateNoteFin: _updateNoteFin
+        updateNoteFin: _updateNoteFinish
     };
 }(window.services = window.services || { }, jQuery));

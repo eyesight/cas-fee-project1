@@ -10,7 +10,7 @@ router.get("/", notes.getNotes);
 router.post("/", notes.creatNote);
 router.delete("/:id/", notes.deleteNote);
 router.get("/:id/", notes.showNotes);
-router.post("/:id/", notes.updateNoteFin);
+router.put("/:id/", notes.updateNoteFin);
 router.post("/:id/", notes.updateNote);
 
 
