@@ -5,14 +5,14 @@
     "use strict";
     const client = window.services.restClient;
 
-    function render(template, noteswrap, sortby, finishState) {
+    function render(template, noteswrap, sortby, finishState, sortDirection) {
         const compiledTemp = Handlebars.compile(template);
         client.getNotes("/notes").done(function (notes) {
             //if button is clicked, show also the notes, which are finished. Otherwise just show not finished items
-            (!finishState) ? notes = noteStorage.showNotFinishNotes(notes) : notes;
+            (!finishState) ? notes = noteStorage.showNotFinish(notes) : notes;
 
             //sort the notes by sortby-value of session-store
-            notes = noteStorage.sortNotes(notes, sortby);
+            notes = noteStorage.sortItems(notes, sortby, sortDirection);
 
             let generatedNote = compiledTemp(notes);
             noteswrap.innerHTML = generatedNote;
@@ -61,14 +61,14 @@
         const optionsStyle = document.querySelectorAll('.style');
 
         let sortbyValue = sessionStorage.getItem('sortby');
-        let finishedState = sessionStorage.getItem('finishStatus');
-        console.log(btnsToSort);
+        let finishedState = false;
+        let sortDirection = 0;
 
         //variables to render page
         const template = document.querySelector('#noteTemplate').innerHTML;
         const notesWrapper = document.querySelector('#notesContainer');
 
-        render(template, notesWrapper, sortbyValue, finishedState);
+        render(template, notesWrapper, sortbyValue, finishedState, sortDirection);
 
         //set Style
         let actualStyle = shared.sessionValue('styleClassName', 'colorful');
@@ -91,8 +91,9 @@
             e.addEventListener('click', function (el) {
                 el.preventDefault();
                 sortbyValue = AddActiveByBtn(btnsToSort, el);
-                console.log(sortbyValue);
-                render(template, notesWrapper, sortbyValue, finishedState);
+                sortDirection = (sortDirection==0) ? sortDirection = 1 : sortDirection = 0;
+                render(template, notesWrapper, sortbyValue, finishedState, sortDirection);
+                console.log(sortDirection);
             });
         });
 
@@ -102,12 +103,12 @@
                 sessionStorage.setItem('finishStatus', true);
                 finishedState = true;
                 btnShowFinished.classList.add('active');
-                render(template, notesWrapper, sortbyValue, finishedState);
+                render(template, notesWrapper, sortbyValue, finishedState, sortDirection);
             } else {
                 sessionStorage.setItem('finishStatus', false);
                 finishedState = false;
                 btnShowFinished.classList.remove('active');
-                render(template, notesWrapper, sortbyValue, finishedState);
+                render(template, notesWrapper, sortbyValue, finishedState, sortDirection);
             }
         });
         //find clicked Button by bubbling the classes to register EventListeners
@@ -115,15 +116,10 @@
             //By click on finish-Button, update Note as finished in database
             if (el.target.classList.contains('note__btn-finish')) {
                 client.getNote(el.target.id).done(note => {
-                    //TODO: funktion machen für setToFinished
-                    let noteID = note._id;
-                    if (note.finished) {
-                        note.finished = false;
-                    } else {
-                        note.finished = true;
-                    }
-                    client.updateNote(noteID, note).done(notes => {
-                        render(template, notesWrapper, sortbyValue, finishedState);
+                    (note.finished) ? note.finished = false : note.finished = true;
+
+                    client.updateNote(note._id, note).done(notes => {
+                        render(template, notesWrapper, sortbyValue, finishedState, sortDirection);
                     });
                 });
             }
@@ -135,7 +131,7 @@
             }
             //delete note by click on delete-button
             else if (el.target.classList.contains('note__delete-btn')) {
-                client.deleteNote(el.target.parentNode.id).done(render(template, notesWrapper, sortbyValue, finishedState));
+                client.deleteNote(el.target.parentNode.id).done(render(template, notesWrapper, sortbyValue, finishedState, sortDirection));
             }
             else {
                 console.log(false);

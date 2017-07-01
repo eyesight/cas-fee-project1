@@ -10,13 +10,17 @@ const noteStorage = (function() {
     }
 
     //TODO: evt. absteigende Funktion machen (importance ist momentan falsch)
-    function _sortNotes(dataToSort, sortBy){
+    function _sortItems(dataToSort, sortBy, direction){
+        (!direction) ? direction = 0 : direction;
+
         return dataToSort.sort(function(a, b){
-            return (a[sortBy] > b[sortBy]) ? 1 : ((b[sortBy] > a[sortBy]) ? -1 : 0);
+            return (direction === 0) ?
+                 (a[sortBy] > b[sortBy]) ? 1 : ((b[sortBy] > a[sortBy]) ? -1 : 0) :
+                 (a[sortBy] < b[sortBy]) ? 1 : ((b[sortBy] < a[sortBy]) ? -1 : 0)
         });
     }
 
-    function _showNotFinishNotes(notes){
+    function _showNotFinish(notes){
         let indexOfNotes = [];
 
         for(let i = 0; i<notes.length;i++){
@@ -34,8 +38,8 @@ const noteStorage = (function() {
 
     return {
         addNewNote: _addNewNote,
-        sortNotes: _sortNotes,
-        showNotFinishNotes: _showNotFinishNotes,
+        sortItems: _sortItems,
+        showNotFinish: _showNotFinish,
         storageGetAll: _storageGetAll
     };
 }() || {});
