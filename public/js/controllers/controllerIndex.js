@@ -8,10 +8,11 @@
     function render(template, noteswrap, sortby, finishState) {
         const compiledTemp = Handlebars.compile(template);
         client.getNotes("/notes").done(function (notes) {
+            //if button is clicked, show also the notes, which are finished. Otherwise just show not finished items
+            (!finishState) ? notes = noteStorage.showNotFinishNotes(notes) : notes;
+
             //sort the notes by sortby-value of session-store
             notes = noteStorage.sortNotes(notes, sortby);
-            //if button is clicked, show also the notes, which are finished. Otherwise just show not finished items
-            (!finishState) ? notes = noteStorage.showNotFinishNotes(notes) : notes ;
 
             let generatedNote = compiledTemp(notes);
             noteswrap.innerHTML = generatedNote;
@@ -26,11 +27,7 @@
         document.querySelector('body').className = actualStyle;
     }
 
-    function getSelectedIDRemoveLetters(id) {
-        id = Number(id.match(/\d+/g));
-        return id;
-    }
-
+    //by click on Button, set sortby to sessionStorage, add class active, return sortby-content
     function AddActiveByBtn(buttonParent, e) {
         //get ID of clicked Button/Link
         let btnClicked = e.currentTarget;
@@ -45,27 +42,14 @@
         });
         //add class "active" to clicked Button
         btnClicked.classList.add('active');
-
         return newSortBy;
     }
 
-    function showFinished(targetElement) {
-        let allNotes = document.querySelectorAll('.note__container');
-        let finishedNotes = document.querySelectorAll('button.active');
-
-        for(let i = 0; i<finishedNotes.length; i++){
-            console.log(i.parentNode);
-        }
-
-        console.log(allNotes);
-        console.log(finishedNotes);
-    }
-
     window.onload = function () {
-        shared.initNoteData();
         shared.sessionValue('styleClassName', 'colorful');
         shared.sessionValue('sortby', 'finishDate');
         shared.sessionValue('showFinished', false);
+        shared.sessionValue('finishStatus', false);
         sessionStorage.removeItem('selectedID');
 
         view.setHandlebarsHelper();
@@ -77,7 +61,8 @@
         const optionsStyle = document.querySelectorAll('.style');
 
         let sortbyValue = sessionStorage.getItem('sortby');
-        let finishedState = false;
+        let finishedState = sessionStorage.getItem('finishStatus');
+        console.log(btnsToSort);
 
         //variables to render page
         const template = document.querySelector('#noteTemplate').innerHTML;
@@ -98,6 +83,7 @@
         });
 
         btnsToSort.forEach(function (e) {
+
             //set class "active" on sort-link by data from session-store
             if (e.id === sortbyValue) {
                 e.classList.add("active");
@@ -105,25 +91,26 @@
             e.addEventListener('click', function (el) {
                 el.preventDefault();
                 sortbyValue = AddActiveByBtn(btnsToSort, el);
-                render(template, notesWrapper, sortbyValue);
+                console.log(sortbyValue);
+                render(template, notesWrapper, sortbyValue, finishedState);
             });
         });
 
-        //show just finished Notes
-        //TODO: vereinfachen
+        //show not finished notes, by click on show-finished-button show all notes
         btnShowFinished.addEventListener('click', function (e) {
             if (finishedState == false) {
+                sessionStorage.setItem('finishStatus', true);
                 finishedState = true;
-                console.log('ff'+finishedState);
                 btnShowFinished.classList.add('active');
                 render(template, notesWrapper, sortbyValue, finishedState);
             } else {
+                sessionStorage.setItem('finishStatus', false);
                 finishedState = false;
                 btnShowFinished.classList.remove('active');
                 render(template, notesWrapper, sortbyValue, finishedState);
             }
         });
-
+        //find clicked Button by bubbling the classes to register EventListeners
         notesWrapper.addEventListener("click", function (el) {
             //By click on finish-Button, update Note as finished in database
             if (el.target.classList.contains('note__btn-finish')) {
@@ -139,12 +126,15 @@
                         render(template, notesWrapper, sortbyValue, finishedState);
                     });
                 });
-            } else if (el.target.classList.contains('note__btn-edit')) {
-                //By click on edit-Btn, set ID in session Store, switch page
+            }
+            //By click on edit-Btn, set ID in session Store, switch page
+            else if (el.target.classList.contains('note__btn-edit')) {
                 let selectedID = el.target.id;
                 sessionStorage.setItem('selectedID', selectedID);
                 window.location.replace("newNote.html");
-            } else if(el.target.classList.contains('note__delete-btn')){
+            }
+            //delete note by click on delete-button
+            else if (el.target.classList.contains('note__delete-btn')) {
                 client.deleteNote(el.target.parentNode.id).done(render(template, notesWrapper, sortbyValue, finishedState));
             }
             else {

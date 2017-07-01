@@ -42,8 +42,6 @@
 
     //when dome is loaded
     window.onload = function () {
-
-        shared.initNoteData();
         //Set variables for EventListeners
         const btnSubmit = document.querySelector("#submitBtn");
         const btnCancelNote = document.querySelector("#cancelBtn");
