@@ -374,6 +374,15 @@ h2{
     width:100%;
 }
 
+.note__date--outdated{
+    color: #8b0000;
+}
+
+.note__date--created{
+    color: #CCC;
+    font-size: 0.8em;
+}
+
 /**
  * footer
  */

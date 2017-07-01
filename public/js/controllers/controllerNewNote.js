@@ -9,8 +9,8 @@
 
     //by clicking on cancel-button go back to index.html
     function cancelNote(e) {
-        window.location.replace("index.html");
         e.preventDefault();
+        window.location.replace("index.html");
     }
 
     //get the selected Note to the form to edit
@@ -37,7 +37,6 @@
             document.getElementById("description").value = description;
             document.getElementById("fdate").value = finishDate;
         });
-
     }
 
     //when dome is loaded
@@ -48,8 +47,6 @@
         const body = document.querySelector('body');
         const selNoteId = sessionStorage.getItem('selectedID') || undefined;
 
-        let allNotes = localStorage.getItem("notes");
-        allNotes = JSON.parse(allNotes);
         let notesObject = {};
 
         //variables for the form
@@ -59,7 +56,6 @@
         body.className = shared.sessionValue('styleClassName', 'colorful');
 
         if (selNoteId) {
-            console.log(selNoteId);
             //all Data of selected Note in form
             getNoteToEdit(selNoteId);
         }

@@ -9,12 +9,11 @@ const noteStorage = (function() {
         client.createNote(newNote);
     }
 
-    //TODO: evt. absteigende Funktion machen (importance ist momentan falsch)
     function _sortItems(dataToSort, sortBy, direction){
         (!direction) ? direction = 0 : direction;
 
         return dataToSort.sort(function(a, b){
-            return (direction === 0) ?
+            return (direction == 0) ?
                  (a[sortBy] > b[sortBy]) ? 1 : ((b[sortBy] > a[sortBy]) ? -1 : 0) :
                  (a[sortBy] < b[sortBy]) ? 1 : ((b[sortBy] < a[sortBy]) ? -1 : 0)
         });

@@ -34,15 +34,27 @@ view = (function() {
             moment.locale(language);
             let momentDate = moment(date);
             let today = moment().set({hour: 0, minute: 0, second: 0, millisecond: 0});
-            let days = moment(date, "LLLL");
+            let days = moment(date, "LL");
             let calendarDate = moment(date).calendar();
+            let weekdays = moment(date).format('dddd');
             let dateDiff = momentDate.diff(today, 'days');
-            if (dateDiff > 0) {
-                return new Handlebars.SafeString('<span> Erledigen bis am <br>' + calendarDate + ' </span>');
-            } else if (dateDiff == 0) {
-                return 'Heute erledigen';
-            } else {
-                return new Handlebars.SafeString('<span class="outdated"> Überfällig seit <br>' + calendarDate + ' </span>');
+
+            switch(true) {
+                case (dateDiff == 0):
+                    return 'Heute erledigen';
+                    break;
+                case (dateDiff == 1):
+                    return 'Morgen erledigen';
+                    break;
+                case (dateDiff>1 && dateDiff<7):
+                    return new Handlebars.SafeString('<span> Erledigen bis nächsten <br>' + weekdays + ' </span>');
+                    break;
+                case (dateDiff > 7):
+                    return new Handlebars.SafeString('<span> Erledigen bis <br>' + calendarDate + ' </span>');
+                    break;
+                default:
+                    return new Handlebars.SafeString('<span class="note__date note__date--outdated"> Überfällig seit <br>' + calendarDate + ' </span>');
+                    break;
             }
         });
 
