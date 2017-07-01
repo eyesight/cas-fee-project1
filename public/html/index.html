@@ -1,79 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Notes</title>
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Notes</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700" rel="stylesheet">
-	<link href="styles/normalize.css" media="all" rel="stylesheet" type="text/css" />
-	<link href="../styles/style.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700" rel="stylesheet">
+    <link href="styles/normalize.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="../styles/style.css" media="all" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div class="wrapper">
-<header class="head">
-	<div class="head__title-container">
-		<h1 class="head__title"><a href="newNote.html"><span class="head__add">add a</span> <span class="head__plus">+</span> {{ Note }}</a></h1>
-	</div>
-	<div class="head__select-container">
-		<p class="head__style-item">Change the style to</p>
-		<select id="stylesAll" class="head__style-item" name="stylesheets">
-			<option class="style" value="colorful">colorful</option>
-			<option class="style" value="black-white">black and white</option>
-		</select>
-	</div>
-</header>
-	<nav class="main-nav">
-		<p class="main-nav__pre">sort by</p>
-		<div class="main-nav__wrapper">
-			<ul id="sortBtns" class="main-nav__list">
-				<li id="finishDate" class="main-nav__element"><span>finish date</span></li>
-				<li id="creatDate" class="main-nav__element"><span>created date</span></li>
-				<li id="rating" class="main-nav__element"><span>importance</span></li>
-			</ul>
-			<button id="showFinishedBtn" class="main-nav__element main-nav__finish">show finished</button>
-		</div>
-	</nav>
-	<div id="notesNumber"></div>
-	<div id="notesName"></div>
-	<div id="notesContainer" class="content-wrap">
-		<article class="note">
+    <header class="head">
+        <div class="head__title-container">
+            <h1 class="head__title"><a href="newNote.html"><span class="head__add">add a</span> <span
+                    class="head__plus">+</span> {{ Note }}</a></h1>
+        </div>
+        <div class="head__select-container">
+            <p class="head__style-item">Change the style to</p>
+            <select id="stylesAll" class="head__style-item" name="stylesheets">
+                <option class="style" value="colorful">colorful</option>
+                <option class="style" value="black-white">black and white</option>
+            </select>
+        </div>
+    </header>
+    <nav class="main-nav">
+        <p class="main-nav__pre">sort by</p>
+        <div class="main-nav__wrapper">
+            <ul id="sortBtns" class="main-nav__list">
+                <li id="finishDate" class="main-nav__element"><span>finish date</span></li>
+                <li id="creatDate" class="main-nav__element"><span>created date</span></li>
+                <li id="rating" class="main-nav__element"><span>importance</span></li>
+            </ul>
+            <button id="showFinishedBtn" class="main-nav__element main-nav__finish">show finished</button>
+        </div>
+    </nav>
+    <div id="notesNumber"></div>
+    <div id="notesName"></div>
+    <div id="notesContainer" class="content-wrap">
+        <article class="note">
 
-		</article>
-	</div>
-<footer class="footer"><p class="noteTitle">Claudia Friedrich 2017</p></footer>
+        </article>
+    </div>
+    <footer class="footer"><p class="noteTitle">Claudia Friedrich 2017</p></footer>
 </div>
 <script id="noteTemplate" type="text/x-handlebars-template">
-	{{#each this}}
-	<article class="note">
-		<div class="note__container">
-			<div class="note__element note__finish-wrapper">
-				<button id="{{_id}}" finishedData = "{{finished}}" class="btn note__btn-finish {{#if this.finished}}active{{/if}} "><span class="note__btn--smalltext">not</span>finished<span class="note__quetionmark">?</span></button>
-			</div>
-			<div class="note__element note__text-wrapper">
-				<div class="note__text-element note__date">
-					<p>{{FormatedDate finishDate "de"}}</p>
-					<p><br>erstellt am <br>{{FormatedDateSimple creatDate "de"}}</p>
-				</div>
-				<div class="note__text-element note__text">
-					<h2 >{{title}}</h2>
-					<p>{{description}}</p>
-				</div>
-				<div class="note__text-element note__rating">
-					<p>{{ratingCounter}}</p>
-				</div>
-				<div class="note__text-element note__close">
-					<button id="{{_id}}" class="btn note__btn-delete">delete</button>
-				</div>
-			</div>
-			<div class="note__element note__edit-wrapper">
-				<button id="{{_id}}" class="btn note__btn-edit">edit</button>
-			</div>
-		</div>
-	</article>
-	{{/each}}
+    {{#each this}}
+    <article class="note">
+        <div class="note__container">
+            <div class="note__element note__finish-wrapper">
+                <button id="{{_id}}" finishedData="{{finished}}"
+                        class="btn note__btn-finish {{#if this.finished}}active{{/if}} "><span
+                        class="note__btn--smalltext">not</span>finished<span class="note__quetionmark">?</span>
+                </button>
+            </div>
+            <div class="note__element note__text-wrapper">
+                <div class="note__text-element note__date">
+                    <p>{{FormatedDate finishDate "de"}}</p>
+                    <p><br>erstellt am <br>{{FormatedDateSimple creatDate "de"}}</p>
+                </div>
+                <div class="note__text-element note__text">
+                    <h2>{{title}}</h2>
+                    <p>{{description}}</p>
+                </div>
+                <div class="note__text-element note__rating">
+                    <p>{{ratingCounter}}</p>
+                </div>
+                <div class="note__text-element note__delete">
+                    <button id="{{_id}}" state="{{_id}}" class="note__delete-btn">
+                        <span class="note__delete-btn note__delete-btn--standardState">delete this</span>
+                        <span class="note__delete-btn note__delete-btn--hoverState">shure?</span>
+                    </button>
+                </div>
+            </div>
+            <div class="note__element note__edit-wrapper">
+                <button id="{{_id}}" class="btn note__btn-edit">edit</button>
+            </div>
+        </div>
+    </article>
+    {{/each}}
 </script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -87,7 +94,6 @@
 <script src="../js/utils/handlebars.js"></script>
 <script src="../js/utils/app.js"></script>
 <script src="../js/controllers/controllerIndex.js"></script>
-
 
 
 </body>

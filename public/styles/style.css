@@ -335,20 +335,43 @@ h2{
 }
 
 .note__rating{
-    text-align: center;
+    text-align: right;
 }
 
-.note__close{
+.note__delete{
     flex: 1 100%;
     text-align: right;
     align-self: flex-end;
 }
 
-.note__container .note__btn-delete{
+.note__delete-btn{
     width: 15%;
+
     background-color: white;
+    border:none;
+
     color: black;
     text-align: right;
+
+    cursor: pointer;
+}
+
+.note__delete-btn--standardState{
+    display: block;
+    width:100%;
+}
+
+.note__delete-btn:hover .note__delete-btn--standardState{
+    display: none;
+}
+
+.note__delete-btn--hoverState{
+    display:none;
+}
+
+.note__delete-btn:hover .note__delete-btn--hoverState{
+    display: block;
+    width:100%;
 }
 
 /**

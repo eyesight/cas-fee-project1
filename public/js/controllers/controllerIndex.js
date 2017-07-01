@@ -11,7 +11,6 @@
             notes = noteStorage.sortNotes(notes, sortby);
             let generatedNote = compiledTemp(notes);
             noteswrap.innerHTML = generatedNote;
-            console.log(notes);
         });
     }
 
@@ -132,12 +131,10 @@
             } else if (el.target.classList.contains('note__btn-edit')) {
                 //By click on edit-Btn, set ID in session Store, switch page
                 let selectedID = el.target.id;
-                console.log(selectedID);
                 sessionStorage.setItem('selectedID', selectedID);
                 window.location.replace("newNote.html");
-            } else if(el.target.classList.contains('note__btn-delete')){
-                //TODO: deleteNote-Funktion in notesStore umbauen und hier einsetzen
-                console.log(el.target.id);
+            } else if(el.target.classList.contains('note__delete-btn')){
+                client.deleteNote(el.target.parentNode.id).done(render(template, notesWrapper, sortbyValue));
             }
             else {
                 console.log(false);

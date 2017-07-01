@@ -23,7 +23,7 @@ module.exports.showNotes = function(req, res){
 };
 
 module.exports.deleteNote =  function (req, res) {
-    store.delete(  req.params.id, function(err, note) {
+    store.delete(req.params.id, function(err, note) {
         res.json(note);
     });
 };
