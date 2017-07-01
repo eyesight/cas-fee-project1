@@ -21,31 +21,15 @@ const noteStorage = (function() {
         });
     }
 
-    function _showFinishNotes(notes, finishState){
+    function _showNotFinishNotes(notes){
         let indexOfNotes = [];
-        for(let i = 0; i<notes.length;i++){
-            if(notes[i].finished == false){
-                notes.splice(i, 1);
-            }
-        }
-        console.log(notes);
-        return notes;
-    }
 
-    function _editNote(editNote, notes){
-        //get index of Object to remove it with splice
-        let indexOfNote = 0;
         for(let i = 0; i<notes.length;i++){
-            if(notes[i].id == editNote.id){
-                indexOfNote = i;
+            if(!notes[i].finished) {
+                indexOfNotes.push(notes[i]);
             }
         }
-        //replace the updated note with splice
-        if(notes){
-            notes.splice(indexOfNote, 1, editNote);
-            _updateNotesInStorage(notes);
-        }
-        return;
+        return indexOfNotes;
     }
 
     function _deleteNote(id, notes){
@@ -62,12 +46,6 @@ const noteStorage = (function() {
         return notes;
     }
 
-    function _creatID(newId, notes){
-        let idMax = Math.max.apply(null, notes.map(function(a){return a.id;}));
-        (!idMax || idMax === '-Infinity') ? newId = 1 : newId = idMax+1;
-        return newId;
-    }
-
     function _parsedNotes(notes){
         let notesParsed = JSON.parse(notes);
         return notesParsed;
@@ -82,12 +60,11 @@ const noteStorage = (function() {
         addNewNote: _addNewNote,
         //getNoteByID: _getNoteByID,
         sortNotes: _sortNotes,
-        showFinishNotes: _showFinishNotes,
+        showNotFinishNotes: _showNotFinishNotes,
         updateNotesInStorage: _updateNotesInStorage,
-        editNote: _editNote,
         deleteNote: _deleteNote,
         parsedNotes: _parsedNotes,
-        creatID: _creatID,
+        //creatID: _creatID,
         storageGetAll:storageGetAll
     };
 }() || {});

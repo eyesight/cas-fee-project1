@@ -5,10 +5,14 @@
     "use strict";
     const client = window.services.restClient;
 
-    function render(template, noteswrap, sortby) {
+    function render(template, noteswrap, sortby, finishState) {
         const compiledTemp = Handlebars.compile(template);
         client.getNotes("/notes").done(function (notes) {
+            //sort the notes by sortby-value of session-store
             notes = noteStorage.sortNotes(notes, sortby);
+            //if button is clicked, show also the notes, which are finished. Otherwise just show not finished items
+            (!finishState) ? notes = noteStorage.showNotFinishNotes(notes) : notes ;
+
             let generatedNote = compiledTemp(notes);
             noteswrap.innerHTML = generatedNote;
         });
@@ -45,6 +49,18 @@
         return newSortBy;
     }
 
+    function showFinished(targetElement) {
+        let allNotes = document.querySelectorAll('.note__container');
+        let finishedNotes = document.querySelectorAll('button.active');
+
+        for(let i = 0; i<finishedNotes.length; i++){
+            console.log(i.parentNode);
+        }
+
+        console.log(allNotes);
+        console.log(finishedNotes);
+    }
+
     window.onload = function () {
         shared.initNoteData();
         shared.sessionValue('styleClassName', 'colorful');
@@ -60,15 +76,14 @@
         const btnShowFinished = document.querySelector('#showFinishedBtn');
         const optionsStyle = document.querySelectorAll('.style');
 
-        let notesObject = localStorage.getItem("notes");
-        let notesData = JSON.parse(notesObject);
         let sortbyValue = sessionStorage.getItem('sortby');
+        let finishedState = false;
 
         //variables to render page
         const template = document.querySelector('#noteTemplate').innerHTML;
         const notesWrapper = document.querySelector('#notesContainer');
 
-        render(template, notesWrapper, sortbyValue);
+        render(template, notesWrapper, sortbyValue, finishedState);
 
         //set Style
         let actualStyle = shared.sessionValue('styleClassName', 'colorful');
@@ -97,19 +112,15 @@
         //show just finished Notes
         //TODO: vereinfachen
         btnShowFinished.addEventListener('click', function (e) {
-            let showFinishedNotes = shared.sessionValue('showFinished', false);
-            console.log(showFinishedNotes);
-            if (showFinishedNotes == 'false') {
-                console.log(showFinishedNotes);
-                sessionStorage.setItem('showFinished', true);
+            if (finishedState == false) {
+                finishedState = true;
+                console.log('ff'+finishedState);
                 btnShowFinished.classList.add('active');
-                notesData = noteStorage.showFinishNotes(notesData);
-                render(template, notesWrapper, sortbyValue);
+                render(template, notesWrapper, sortbyValue, finishedState);
             } else {
-                sessionStorage.setItem('showFinished', false);
+                finishedState = false;
                 btnShowFinished.classList.remove('active');
-                notesData = JSON.parse(notesObject);
-                render(template, notesWrapper, sortbyValue);
+                render(template, notesWrapper, sortbyValue, finishedState);
             }
         });
 
@@ -125,7 +136,7 @@
                         note.finished = true;
                     }
                     client.updateNote(noteID, note).done(notes => {
-                        render(template, notesWrapper, sortbyValue);
+                        render(template, notesWrapper, sortbyValue, finishedState);
                     });
                 });
             } else if (el.target.classList.contains('note__btn-edit')) {
@@ -134,7 +145,7 @@
                 sessionStorage.setItem('selectedID', selectedID);
                 window.location.replace("newNote.html");
             } else if(el.target.classList.contains('note__delete-btn')){
-                client.deleteNote(el.target.parentNode.id).done(render(template, notesWrapper, sortbyValue));
+                client.deleteNote(el.target.parentNode.id).done(render(template, notesWrapper, sortbyValue, finishedState));
             }
             else {
                 console.log(false);
