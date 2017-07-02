@@ -9,12 +9,6 @@ const app = express();
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/public/html'));
 
-//var index = require('./routes/index');
-
-// view engine setup
-/*app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');*/
-
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -47,4 +41,6 @@ app.use(function (err, req, res, next) {
     }
 });
 
-module.exports = app;
+const hostname = '127.0.0.1';
+const port = 3004;
+app.listen(port, hostname, () => {  console.log(`Server running at http://${hostname}:${port}/`); });

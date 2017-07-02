@@ -1,4 +1,4 @@
-{"title":"malen nach zahlen","description":"xxx","rating":"4","finishDate":"2017-07-01","finished":false,"creatDate":{"$$date":1498949070995},"_id":"1dOJcT0Mb7RagZLx"}
-{"title":"Serie fertig schauen","description":"Dexter","rating":"4","finishDate":"2017-07-06","finished":false,"creatDate":{"$$date":1498949080478},"_id":"HrJbVNdmE5O211vH"}
-{"title":"bö","description":"irgendwas und so","rating":"3","finishDate":"2017-07-02","finished":true,"creatDate":{"$$date":1498949066496},"_id":"M6LSyFq4vRhrzBCy"}
-{"title":"oooo","description":"ooooo","rating":"5","finishDate":"2017-06-15","finished":true,"creatDate":{"$$date":1498944925949},"_id":"XTSn2cyWZybrRGUp"}
+{"title":"malen nach zahlen","description":"Beschreibung von mir","rating":"1","finishDate":"2017-06-16","finished":false,"creatDate":{"$$date":1498939537294},"_id":"1dOJcT0Mb7RagZLx"}
+{"title":"Test","description":"Test","rating":"3","finishDate":"2017-07-16","finished":true,"creatDate":{"$$date":1498939537294},"_id":"4Qn6wEfmaZc7dv3s"}
+{"title":"Serie fertig schauen","description":"Game of Thrones","rating":"4","finishDate":"2017-07-06","creatDate":{"$$date":1498939537294},"_id":"HrJbVNdmE5O211vH"}
+{"title":"bö","description":"irgendwas und so","rating":"3","finishDate":"2017-07-02","finished":false,"creatDate":{"$$date":1498939537294},"_id":"M6LSyFq4vRhrzBCy"}
