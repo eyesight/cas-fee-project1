@@ -1,9 +1,4 @@
-{"title":"lll","description":"lll","rating":"4","finishDate":"2017-07-01","creatDate":{"$$date":1498930897532},"_id":"1dOJcT0Mb7RagZLx"}
-{"title":"dd","description":"dd","rating":"4","finishDate":"2017-07-02","creatDate":{"$$date":1498943445579},"_id":"7fURyqinOQG5PBxc"}
-{"title":"oooo","description":"jjjjj","rating":"4","finishDate":"2017-07-06","creatDate":{"$$date":1498931028807},"_id":"HrJbVNdmE5O211vH"}
-{"title":"lkkk","description":"kkkk","rating":"3","finishDate":"2017-07-02","finished":true,"creatDate":{"$$date":1498943040194},"_id":"M6LSyFq4vRhrzBCy"}
-{"title":"oooo","description":"ooooo","rating":"2","finishDate":"2017-06-15","finished":true,"creatDate":{"$$date":1498939537294},"_id":"XTSn2cyWZybrRGUp"}
-{"title":"egwerwer","description":"ewgewgr","rating":"5","finishDate":"2017-09-02","creatDate":{"$$date":1498941771221},"_id":"YDKgLseqDWDzKEVq"}
-{"title":"ffffffGGG","description":"fffffRRRRR","rating":"3","finishDate":"2017-07-28","finished":false,"creatDate":{"$$date":1498926336999},"_id":"auIke6KRfrNLoH8d"}
-{"title":"dadgsdfgsdfgUUU","description":"dsfgsdfgsdfgUUU","rating":"5","finishDate":"2017-07-23","finished":true,"creatDate":{"$$date":1498943956477},"_id":"d1mjwZQQTG5wxElx"}
-{"title":"wwwwTTTT","description":"wwww","rating":"5","finishDate":"2017-07-21","finished":true,"creatDate":{"$$date":1498929664936},"_id":"keTnHgNhsShTTEHa"}
+{"title":"malen nach zahlen","description":"xxx","rating":"4","finishDate":"2017-07-01","finished":false,"creatDate":{"$$date":1498949070995},"_id":"1dOJcT0Mb7RagZLx"}
+{"title":"Serie fertig schauen","description":"Dexter","rating":"4","finishDate":"2017-07-06","finished":false,"creatDate":{"$$date":1498949080478},"_id":"HrJbVNdmE5O211vH"}
+{"title":"bö","description":"irgendwas und so","rating":"3","finishDate":"2017-07-02","finished":true,"creatDate":{"$$date":1498949066496},"_id":"M6LSyFq4vRhrzBCy"}
+{"title":"oooo","description":"ooooo","rating":"5","finishDate":"2017-06-15","finished":true,"creatDate":{"$$date":1498944925949},"_id":"XTSn2cyWZybrRGUp"}

@@ -2,7 +2,6 @@
  * Created by claudia on 25.05.17.
  * Event-Listeners for the newNote.html-file
  **/
-//Immediately-invokedFunctionExpression (IIFE)
 ;(function (window, document) {
     "use strict";
     const client = window.services.restClient;
@@ -21,10 +20,7 @@
             let title = note.title;
             let description = note.description;
             let rating = note.rating;
-            let creatDate = note.creatDate;
             let finishDate = note.finishDate;
-            let finished = note.finished;
-            let id = note._id;
 
             //fill the form with value of selected Note
             for (let i = 0; i < stars.length; i++) {
@@ -60,7 +56,6 @@
             getNoteToEdit(selNoteId);
         }
 
-
         //EventListener
         btnSubmit.addEventListener('click', function (e) {
             e.preventDefault();
@@ -72,7 +67,7 @@
 
             (!title) ? validationText += ' Titel ' : notesObject.title = document.getElementById("title").value;
             (!description) ? validationText += ' Beschreibung ' : notesObject.description = document.getElementById("description").value;
-            (!rating) ? validationText += ' Rating ' : notesObject.rating = document.querySelector('input[name="rating"]:checked').value;
+            (!rating || rating == null) ? validationText += ' Rating ' : notesObject.rating = document.querySelector('input[name="rating"]:checked').value;
             (!finishDate) ? validationText += ' Datum ' : notesObject.finishDate = document.getElementById("fdate").value;
 
             //set ID of note as new, when no ID is selected

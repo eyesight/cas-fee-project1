@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-//var favicon = require('serve-favicon');
+var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -16,14 +16,12 @@ app.use(express.static(__dirname + '/public/html'));
 app.set('view engine', 'hbs');*/
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-//app.use('/', index);
 
 app.get("/", function(req, res){
     res.sendFile("/html/index.html",  {root: __dirname + '/public/'});
@@ -48,9 +46,5 @@ app.use(function (err, req, res, next) {
         next(err);
     }
 });
-
-const hostname = '127.0.0.1';
-const port = 3000;
-app.listen(port, hostname, () => {  console.log(`Server running at http://${hostname}:${port}/`); });
 
 module.exports = app;
