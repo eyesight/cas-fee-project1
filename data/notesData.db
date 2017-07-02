@@ -1,4 +1,18 @@
-{"title":"malen nach zahlen","description":"Beschreibung von mir","rating":"1","finishDate":"2017-06-16","finished":false,"creatDate":{"$$date":1498939537294},"_id":"1dOJcT0Mb7RagZLx"}
-{"title":"Test","description":"Test","rating":"3","finishDate":"2017-07-16","finished":true,"creatDate":{"$$date":1498939537294},"_id":"4Qn6wEfmaZc7dv3s"}
-{"title":"Serie fertig schauen","description":"Game of Thrones","rating":"4","finishDate":"2017-07-06","creatDate":{"$$date":1498939537294},"_id":"HrJbVNdmE5O211vH"}
-{"title":"bö","description":"irgendwas und so","rating":"3","finishDate":"2017-07-02","finished":false,"creatDate":{"$$date":1498939537294},"_id":"M6LSyFq4vRhrzBCy"}
+{"title":"Blumen Giessen und umtopfen","description":"alle Pflanzen","rating":"4","finishDate":"2017-07-05","finished":true,"creatDate":{"$$date":1498137398505},"_id":"5jEwPDxnCiBWcTkj"}
+{"title":"Alles Testen","description":"wirklich alles","rating":"2","finishDate":"2018-04-02","finished":false,"creatDate":{"$$date":1499001951973},"_id":"G1jcu7HiTVpye2l4"}
+{"title":"Grillzange kaufen","description":"Eine mega grosse","rating":"3","finishDate":"2017-07-02","finished":false,"creatDate":{"$$date":1499001500479},"_id":"IKrtQziAUr16c6Ny"}
+{"title":"sdfsdf","description":"sdfsdf","rating":"3","finishDate":"2017-07-08","finished":false,"creatDate":{"$$date":1499003125128},"_id":"rFUHPvLna7MBYyKC"}
+{"title":"Telefonieren","description":"mit irgendjemandem","rating":"5","finishDate":"2017-07-08","finished":true,"creatDate":{"$$date":1498137443944},"_id":"yfiWmlJFoHwtO22P"}
+{"$$deleted":true,"_id":"rFUHPvLna7MBYyKC"}
+{"title":"Letzter Test","description":"ein letzter Test","rating":"3","finishDate":"2017-07-21","finished":false,"creatDate":{"$$date":1499003324545},"_id":"q5H1K1tVlfa4ssAk"}
+{"title":"Letzter Test sdf","description":"ein letzter Test","rating":"3","finishDate":"2017-07-21","finished":false,"creatDate":{"$$date":1499003324545},"_id":"q5H1K1tVlfa4ssAk"}
+{"title":"Letzter Test sdf","description":"ein letzter Test","rating":"3","finishDate":"2017-07-21","finished":true,"creatDate":{"$$date":1499003324545},"_id":"q5H1K1tVlfa4ssAk"}
+{"$$deleted":true,"_id":"q5H1K1tVlfa4ssAk"}
+{"title":"Blumen Giessen und umtopfen","description":"alle Pflanzen","rating":"4","finishDate":"2017-07-05","finished":true,"creatDate":{"$$date":1498137398505},"_id":"5jEwPDxnCiBWcTkj"}
+{"title":"Blumen Giessen","description":"alle Pflanzen","rating":"1","finishDate":"2017-07-05","finished":true,"creatDate":{"$$date":1498137398505},"_id":"5jEwPDxnCiBWcTkj"}
+{"title":"Blumen Giessen","description":"alle Pflanzen","rating":"5","finishDate":"2017-07-10","finished":true,"creatDate":{"$$date":1498137398505},"_id":"5jEwPDxnCiBWcTkj"}
+{"title":"Blumen Giessen","description":"alle Pflanzen und so","rating":"1","finishDate":"2017-07-10","finished":true,"creatDate":{"$$date":1498137398505},"_id":"5jEwPDxnCiBWcTkj"}
+{"title":"Testing","description":"in allen Browsern","rating":"4","finishDate":"2019-05-04","finished":false,"creatDate":{"$$date":1499003451890},"_id":"izZqPtlEPvXCPV3z"}
+{"title":"Testing","description":"in allen Browsern","rating":"2","finishDate":"2019-05-04","finished":false,"creatDate":{"$$date":1499003451890},"_id":"izZqPtlEPvXCPV3z"}
+{"title":"Testing","description":"in allen Browsern","rating":"2","finishDate":"2019-05-04","finished":true,"creatDate":{"$$date":1499003451890},"_id":"izZqPtlEPvXCPV3z"}
+{"$$deleted":true,"_id":"izZqPtlEPvXCPV3z"}

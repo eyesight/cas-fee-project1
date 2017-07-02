@@ -15,7 +15,7 @@
 <div class="wrapper">
     <header class="head">
         <div class="head__title-container head--no-padding">
-            <h1 class="head__title">add a {{ Note }}</h1>
+            <h1 class="head__title">add/edit a {{ Note }}</h1>
         </div>
     </header>
     <div class="form-wrap content-wrap">
@@ -40,7 +40,7 @@
                         <label for="star-1">☆</label>
                     </div>
                 <label for="fdate">Finishing Date</label>
-                <input type="date" id="fdate" name="bday" required autofocus/>
+                <input type="date" id="fdate" value="0000-00-00" name="bday" required autofocus/>
                 <div class="form__btn">
                     <button id="submitBtn" method="post" class="btn form__btn" type="submit" value="Submit"><a class="btn--link">submit</a></button>
                     <button id="cancelBtn" class="btn form__btn"><a class="btn--link">cancel</a></button>

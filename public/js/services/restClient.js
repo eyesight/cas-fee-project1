@@ -1,7 +1,7 @@
 /**
  * Created by claudia on 27.06.17.
  */
-;(function(services, $) {
+;(function (services, $) {
 
     const ajaxUtil = window.util.ajax;
 
@@ -21,14 +21,14 @@
     function _deleteNote(id) {
         return ajaxUtil.ajax("DELETE", `/notes/${id}`, undefined);
     }
-    //TODO: Update should be with Put -> check!
+
     function _updateNote(id, note) {
-        return ajaxUtil.ajax("POST",`/notes/${id}`, note);
+        return ajaxUtil.ajax("PUT", `/notes/edit/${id}`, note);
 
     }
 
     function _updateNoteFinish(id, note) {
-        return ajaxUtil.ajax("PUT",`/notes/${id}`, note);
+        return ajaxUtil.ajax("PUT", `/notes/${id}`, note);
 
     }
 
@@ -40,4 +40,4 @@
         updateNote: _updateNote,
         updateNoteFin: _updateNoteFinish
     };
-}(window.services = window.services || { }, jQuery));
+}(window.services = window.services || {}, jQuery));

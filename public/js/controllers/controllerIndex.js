@@ -91,7 +91,7 @@
             e.addEventListener('click', function (el) {
                 el.preventDefault();
                 sortbyValue = AddActiveByBtn(btnsToSort, el);
-                sortDirection = (sortDirection==0) ? sortDirection = 1 : sortDirection = 0;
+                sortDirection = (sortDirection == 0) ? sortDirection = 1 : sortDirection = 0;
                 render(template, notesWrapper, sortbyValue, finishedState, sortDirection);
                 console.log(sortDirection);
             });
@@ -118,7 +118,7 @@
                 client.getNote(el.target.id).done(note => {
                     (note.finished) ? note.finished = false : note.finished = true;
 
-                    client.updateNote(note._id, note).done(notes => {
+                    client.updateNoteFin(note._id, note).done(note => {
                         render(template, notesWrapper, sortbyValue, finishedState, sortDirection);
                     });
                 });

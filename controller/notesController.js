@@ -13,6 +13,7 @@ module.exports.creatNote = function (req, res) {
     let note = store.add(req.body.title, req.body.description, req.body.rating, req.body.finishDate, function (err, note) {
         res.json(note);
     });
+
 };
 
 module.exports.showNotes = function (req, res) {
@@ -28,7 +29,7 @@ module.exports.deleteNote = function (req, res) {
 };
 
 module.exports.updateNote = function (req, res) {
-    let note = store.update(req.params.id, req.body.title, req.body.description, req.body.rating, req.body.finishDate, req.body.finished, function (err, note) {
+    let note = store.update(req.params.id, req.body.title, req.body.description, req.body.rating, req.body.finishDate, function (err, note) {
         res.json(note);
     });
 };

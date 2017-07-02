@@ -68,7 +68,7 @@
             (!rating || rating == null) ? validationText += ' Rating ' : notesObject.rating = document.querySelector('input[name="rating"]:checked').value;
             (!title) ? validationText += ' Titel ' : notesObject.title = document.getElementById("title").value;
             (!description || description == 'undefined') ? validationText += ' Beschreibung ' : notesObject.description = document.getElementById("description").value;
-            (!finishDate) ? validationText += ' Datum ' : notesObject.finishDate = document.getElementById("fdate").value;
+            (!finishDate || finishDate == '0000-00-00') ? validationText += ' Datum ' : notesObject.finishDate = document.getElementById("fdate").value;
 
             //when selected-ID not exist, add note, otherwise update note
             if (validationText) {
@@ -77,15 +77,11 @@
                 if (!selNoteId) {
                     notesObject.creatDate = moment().format();
                     notesObject.finished = false;
-                    console.log('keine ID');
-                    console.log(notesObject);
 
                     client.createNote(notesObject).then(element => {
                         debugger;
                     });
                 } else {
-                    console.log(selNoteId);
-                    console.log(notesObject);
                     client.updateNote(selNoteId, notesObject).done(note => {
                         console.log('render' + note);
                     });

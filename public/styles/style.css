@@ -695,3 +695,7 @@ body.black-white, .black-white select{
 .black-white .form__submit.btn:focus{
     background-color: #ffffff;
 }
+
+.black-white .form__rating > label{
+    color: #ffffff;
+}

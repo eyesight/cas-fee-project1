@@ -11,7 +11,7 @@ router.post("/", notes.creatNote);
 router.delete("/:id/", notes.deleteNote);
 router.get("/:id/", notes.showNotes);
 router.put("/:id/", notes.updateNoteFin);
-router.post("/:id/", notes.updateNote);
+router.put("/edit/:id/", notes.updateNote);
 
 
 
