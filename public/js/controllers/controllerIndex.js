@@ -48,7 +48,6 @@
     window.onload = function () {
         shared.sessionValue('styleClassName', 'colorful');
         shared.sessionValue('sortby', 'finishDate');
-        shared.sessionValue('showFinished', false);
         shared.sessionValue('finishStatus', false);
         sessionStorage.removeItem('selectedID');
 

@@ -1,6 +1,14 @@
 # cas-fee-project1
 
-<h2>Erstellen einer Notizenapplikation</h2>
+<h2>Notizenapplikation</h2>
+
+<p>Folgende Punkte ausführen zum Starten:</p>
+
+<ul>
+<li>npm install</li>
+<li>npm start</li>
+<li>läuft unter <a href="http://127.0.0.1:3434/">http://127.0.0.1:3434/</a></li>
+</ul>
 
 <h4>Funktionsumfang</h4>
 <p> Der Funktionsumfang ist in den Wire-Frames dargestellt. Diese beinhalten u.a.</p>
